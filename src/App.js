@@ -31,7 +31,7 @@ class AmazoffApp extends Component {
           <div className="row">
             <main className="col-md-8" role="main">
               <h4>Best Sellers</h4>
-                <ul className="list-unstyled">
+                <ul className="list-unstyled d-flex flex-row flex-wrap justify-content-around">
                   <li className="media book my-4">
                     <img className="book__image mr-3" src="/images/1.jpg" alt="Generic placeholder image"/>
                     <div className="media-body">

@@ -9,3 +9,16 @@ $BOOK
 .book__image {
   width: 75px;
 }
+
+@media (min-width: 768px) {
+  /** 
+   * Book objects displayed in 2 columns in larger views
+   */
+  .book {
+    width: 50%;
+  }
+  
+  .book:nth-child(2n) {
+    padding-left: 1em;
+  }
+}
