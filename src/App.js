@@ -35,29 +35,29 @@ class AmazoffApp extends Component {
                   <li className="media book my-4">
                     <img className="book__image mr-3" src="/images/1.jpg" alt="Generic placeholder image"/>
                     <div className="media-body">
-                      <h5 className="mt-0 mb-1">List-based media object</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                      <h6 className="book__title mt-0 mb-1">100 Things Every Designer Needs to Know About People</h6>
+                      <span className="text-muted h6">by Edward R. Tufte</span>
                     </div>
                   </li>
                   <li className="media book my-4">
                     <img className="book__image mr-3" src="/images/2.jpg" alt="Generic placeholder image"/>
                     <div className="media-body">
-                      <h5 className="mt-0 mb-1">List-based media object</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                      <h6 className="book__title mt-0 mb-1">Envisioning Information</h6>
+                      <span className="text-muted h6">by Susan Weinschenk</span>
                     </div>
                   </li>
                   <li className="media book my-4">
                     <img className="book__image mr-3" src="/images/3.jpg" alt="Generic placeholder image"/>
                     <div className="media-body">
-                      <h5 className="mt-0 mb-1">List-based media object</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                      <h6 className="book__title mt-0 mb-1">About Face: The Essentials of Interaction Design</h6>
+                      <span className="text-muted h6">by Alan Cooper</span>
                     </div>
                   </li>
                   <li className="media book my-4">
                     <img className="book__image mr-3" src="/images/4.jpg" alt="Generic placeholder image"/>
                     <div className="media-body">
-                      <h5 className="mt-0 mb-1">List-based media object</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                      <h6 className="book__title mt-0 mb-1">HTML and CSS: Design and Build Websites</h6>
+                      <span className="text-muted h6">by Jon Duckett</span>
                     </div>
                   </li>
                 </ul>
