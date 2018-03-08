@@ -22,6 +22,35 @@ const Header = () => {
   );
 }
 
+class BookItem extends React.Component {
+  render() {
+    return (
+      <li className="media book my-4">
+        <img className="book__image mr-3" src={this.props.book.imageUrl} alt={this.props.book.title}/>
+        <div className="media-body">
+          <h6 className="book__title mt-0 mb-1">{this.props.book.title}</h6>
+          <div className="text-muted h6">{this.props.book.author}</div>
+          <div className="text-muted h6">{this.props.book.price.currency + ' ' + this.props.book.price.amount}</div>
+        </div>
+      </li>
+    );
+  }
+}
+
+class BookList extends React.Component {
+  render() {
+    let displayedBooks = this.props.books.map(
+      (b) => <BookItem key={b.id} book={b} />
+    );
+    
+    return (
+      <ul className="list-unstyled d-flex flex-row flex-wrap justify-content-around">
+        {displayedBooks}
+      </ul>
+    );
+  }
+}
+
 class AmazoffApp extends Component {
   render() {
     return (
@@ -31,36 +60,7 @@ class AmazoffApp extends Component {
           <div className="row">
             <main className="col-md-8" role="main">
               <h4>Best Sellers</h4>
-                <ul className="list-unstyled d-flex flex-row flex-wrap justify-content-around">
-                  <li className="media book my-4">
-                    <img className="book__image mr-3" src="/images/1.jpg" alt="Generic placeholder image"/>
-                    <div className="media-body">
-                      <h6 className="book__title mt-0 mb-1">100 Things Every Designer Needs to Know About People</h6>
-                      <span className="text-muted h6">by Edward R. Tufte</span>
-                    </div>
-                  </li>
-                  <li className="media book my-4">
-                    <img className="book__image mr-3" src="/images/2.jpg" alt="Generic placeholder image"/>
-                    <div className="media-body">
-                      <h6 className="book__title mt-0 mb-1">Envisioning Information</h6>
-                      <span className="text-muted h6">by Susan Weinschenk</span>
-                    </div>
-                  </li>
-                  <li className="media book my-4">
-                    <img className="book__image mr-3" src="/images/3.jpg" alt="Generic placeholder image"/>
-                    <div className="media-body">
-                      <h6 className="book__title mt-0 mb-1">About Face: The Essentials of Interaction Design</h6>
-                      <span className="text-muted h6">by Alan Cooper</span>
-                    </div>
-                  </li>
-                  <li className="media book my-4">
-                    <img className="book__image mr-3" src="/images/4.jpg" alt="Generic placeholder image"/>
-                    <div className="media-body">
-                      <h6 className="book__title mt-0 mb-1">HTML and CSS: Design and Build Websites</h6>
-                      <span className="text-muted h6">by Jon Duckett</span>
-                    </div>
-                  </li>
-                </ul>
+              <BookList books={this.props.books} />
             </main>
             <aside className="col-md-4">
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
