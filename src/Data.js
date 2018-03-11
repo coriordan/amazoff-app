@@ -119,6 +119,32 @@ let AllBooks = [
         'title': 'Design Patterns in Ruby', 
         'author': 'Russ Olsen'
     }
-] ; 
+]; 
 
-export default AllBooks;
+let Cart = [
+  {
+      'price': {
+        'currency' : 'EUR',
+        'amount' : 22.95 
+      },
+      'id': 1, 
+      'imageUrl': 'books/images/1.jpg', 
+      'title': '100 Things Every Designer Needs to Know About People', 
+      'author': 'Susan Weinschenk',
+      'quantity': 1
+  },
+  {
+      'price': {
+        'currency' : 'EUR',
+        'amount' : 34.96 
+      },
+      'id': 2, 
+      'imageUrl': 'books/images/2.jpg',
+      'title': 'Envisioning Information',
+      'author': 'Edward R. Tufte',
+      'quantity': 2
+  }
+];
+
+
+export {AllBooks as Books, Cart};

@@ -22,6 +22,44 @@ const Header = () => {
   );
 }
 
+class Cart extends React.Component {
+  render() {
+    let cartItems = this.props.cart.map(
+      (i) => <CartItem key={i.id} item={i} />
+    );
+    
+    return (
+      <ul>
+      {cartItems}
+      </ul>
+    );
+  }
+}
+
+class CartItem extends React.Component {
+  render() {
+    return (
+      <li className="media cart-item my-4">
+        <img className="cart-item__image mr-3" src={this.props.item.imageUrl} alt={this.props.item.title}/>
+        <div className="media-body d-flex flex-row justify-content-between align-items-center">
+          <div className="w-100">
+            <h6 className="cart-item__title mt-0 mb-1">{this.props.item.title}</h6>
+            <div className="cart-item__meta text-muted">by {this.props.item.author}</div>
+          </div>
+          <div className="cart-item__meta text-muted">{this.props.item.price.currency + ' ' + this.props.item.price.amount}</div>
+          <select id="cart-item__quantity" className="form-control w-25">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </li>
+    );
+  }
+}
+
 class BookItem extends React.Component {
   render() {
     return (
@@ -63,7 +101,7 @@ class AmazoffApp extends Component {
               <BookList books={this.props.books} />
             </main>
             <aside className="col-md-4">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <Cart cart={this.props.cartItems} />
             </aside>
           </div>
         </div>

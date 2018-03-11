@@ -26,3 +26,16 @@ $BOOK
     padding-left: 1em;
   }
 }
+
+.cart-item {
+  
+}
+
+.cart-item__image {
+  width: 50px;
+}
+
+.cart-item__title, .cart-item__meta {
+  font-weight: 300;
+  font-size: 0.9em;
+}
