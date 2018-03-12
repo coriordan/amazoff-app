@@ -61,7 +61,7 @@ class CartItem extends React.Component {
             <div className="cart-item__meta text-muted">by {this.props.item.author}</div>
           </div>
           <div className="cart-item__meta text-muted">{this.props.item.price.currency + ' ' + this.props.item.price.amount}</div>
-          <select id="cart-item__quantity" className="form-control" style={{width: '15%'}}>
+          <select id="cart-item__quantity" className="form-control form-control-sm" style={{width: '15%'}}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
