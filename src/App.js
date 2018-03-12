@@ -29,13 +29,27 @@ class Cart extends React.Component {
     );
     
     return (
-      <ul className="list-unstyled">
-      {cartItems}
-      </ul>
+      <div id="shoping-cart">
+        <ul className="list-unstyled">
+        {cartItems}
+        </ul>
+        <hr/>
+      </div>
     );
   }
 }
 
+const CartTotal = ({items}) => (
+  <div className="d-flex justify-content-between align-items-center"> 
+    <span className="mr-auto">Sub total:</span>
+    <strong className="pr-3">EUR&nbsp;{items.reduce(
+      (sum, i) => (sum += i.quantity 
+        * i.price.amount), 0)}</strong>
+    <button type="button" className="btn btn-primary btn-sm">Checkout</button>
+  </div>
+)
+  
+  
 class CartItem extends React.Component {
   render() {
     return (
@@ -106,6 +120,7 @@ class AmazoffApp extends Component {
             <aside className="col-md-4">
               <h5>Shopping Cart</h5>
               <Cart cart={this.props.cartItems} />
+              <CartTotal items={this.props.cartItems} />
             </aside>
           </div>
         </div>
