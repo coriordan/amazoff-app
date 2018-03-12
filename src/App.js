@@ -41,13 +41,13 @@ class CartItem extends React.Component {
     return (
       <li className="media cart-item my-4">
         <img className="cart-item__image mr-3" src={this.props.item.imageUrl} alt={this.props.item.title}/>
-        <div className="media-body d-flex flex-row justify-content-between align-items-center">
-          <div className="w-100">
+        <div className="media-body d-flex flex-row justify-content-between align-items-start">
+          <div className="w-50">
             <h6 className="cart-item__title mt-0 mb-1">{this.props.item.title}</h6>
             <div className="cart-item__meta text-muted">by {this.props.item.author}</div>
           </div>
           <div className="cart-item__meta text-muted">{this.props.item.price.currency + ' ' + this.props.item.price.amount}</div>
-          <select id="cart-item__quantity" className="form-control w-25">
+          <select id="cart-item__quantity" className="form-control" style={{width: '15%'}}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
