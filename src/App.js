@@ -29,7 +29,7 @@ class Cart extends React.Component {
     );
     
     return (
-      <ul>
+      <ul className="list-unstyled">
       {cartItems}
       </ul>
     );
@@ -54,6 +54,9 @@ class CartItem extends React.Component {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
+          <button type="button" className="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       </li>
     );
@@ -101,6 +104,7 @@ class AmazoffApp extends Component {
               <BookList books={this.props.books} />
             </main>
             <aside className="col-md-4">
+              <h5>Shopping Cart</h5>
               <Cart cart={this.props.cartItems} />
             </aside>
           </div>
