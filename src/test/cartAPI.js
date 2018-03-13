@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+const _getByID = Symbol('getByID');
+
 class CartAPI {
 
   constructor() {
@@ -20,16 +22,31 @@ class CartAPI {
   add(item) {
     // if item already exists, increase item quantity in cart,
     // otherwise, add item
-    let index = _.findIndex(this.cart, 
-      (cartItem) => cartItem.id === item.id
-    );
+    let cartItem = this[_getByID](item.id);
     
-    if (index !== -1) {
-      this.cart[index].quantity++;
+    if (cartItem) {
+      cartItem.quantity++;
     } else {
       item.quantity = 1;
       this.cart.push(item);
     } 
+  }
+  
+  updateQuantity(id, quantity) {
+    let cartItem = this[_getByID](id);
+    
+    if (cartItem) {
+      cartItem.quantity = quantity;
+    }
+  }
+  
+  // private
+  [_getByID](id) {
+    let index = _.findIndex(this.cart, 
+      (cartItem) => cartItem.id === id
+    );
+    
+    return this.cart[index];
   }
 }
 

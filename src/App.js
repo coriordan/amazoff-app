@@ -27,7 +27,8 @@ class Cart extends React.Component {
   render() {
     let cartItems = this.props.cart.map(
       (i) => <CartItem key={i.id} item={i} 
-                       removeHandler={this.props.removeHandler} />
+                       removeHandler={this.props.removeHandler} 
+                       updateQuantityHandler={this.props.updateQuantityHandler}/>
     );
 
     return (
@@ -64,6 +65,11 @@ class CartItem extends React.Component {
     e.preventDefault();
     this.props.removeHandler(this.props.item.id);
   }
+  
+  handleUpdateQuantity = (e) => {
+    e.preventDefault();
+    this.props.updateQuantityHandler(this.props.item.id, e.target.value);
+  }
 
   render() {
     return (
@@ -75,7 +81,9 @@ class CartItem extends React.Component {
             <div className="cart-item__meta text-muted">by {this.props.item.author}</div>
           </div>
           <div className="cart-item__meta text-muted">{this.props.item.price.currency + ' ' + this.props.item.price.amount}</div>
-          <select id="cart-item__quantity" className="form-control form-control-sm" style={{width: '15%'}}>
+          <select id="cart-item__quantity" value={this.props.item.quantity} 
+                  className="form-control form-control-sm" style={{width: '15%'}}
+                  onChange={this.handleUpdateQuantity}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -139,6 +147,11 @@ class AmazoffApp extends Component {
     this.setState({});
   }
 
+  updateQuantity = (id, quantity) => {
+    cartAPI.updateQuantity(id, quantity);
+    this.setState({});
+  }
+
   render() {
     let cart = cartAPI.getCartContents();
 
@@ -155,7 +168,8 @@ class AmazoffApp extends Component {
             <aside className="col-md-4">
               <h5>Shopping Cart</h5>
               <Cart cart={cart} 
-                    removeHandler={this.removeFromCart} />
+                    removeHandler={this.removeFromCart} 
+                    updateQuantityHandler={this.updateQuantity} />
             </aside>
           </div>
         </div>
