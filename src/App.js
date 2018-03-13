@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cartAPI from './test/cartAPI';
 import './App.css';
 
 const Header = () => {
@@ -99,7 +100,7 @@ class BookList extends React.Component {
     );
     
     return (
-      <ul className="list-unstyled d-flex flex-row flex-wrap justify-content-around">
+      <ul className="list-unstyled d-flex flex-row flex-wrap justify-content-between">
         {displayedBooks}
       </ul>
     );
@@ -107,7 +108,19 @@ class BookList extends React.Component {
 }
 
 class AmazoffApp extends Component {
+  addToCart = (item) => {
+    cartAPI.add(item);
+    this.setState({});
+  }
+  
+  removeFromCart = (id) => {
+    cartAPI.remove(id);
+    this.setState({});
+  }
+  
   render() {
+    let cart = cartAPI.getCartContents();
+    
     return (
       <div className="view-container">
         <Header />
@@ -115,12 +128,14 @@ class AmazoffApp extends Component {
           <div className="row">
             <main className="col-md-8" role="main">
               <h4>Best Sellers</h4>
-              <BookList books={this.props.books} />
+              <BookList books={this.props.books} 
+                        addHandler={this.addToCart} />
             </main>
             <aside className="col-md-4">
               <h5>Shopping Cart</h5>
-              <Cart cart={this.props.cartItems} />
-              <CartTotal items={this.props.cartItems} />
+              <Cart cart={cart} 
+                    removeHandler={this.removeFromCart} />
+              <CartTotal items={cart} />
             </aside>
           </div>
         </div>

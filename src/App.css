@@ -6,6 +6,10 @@ $BOOK
 *  Book object styles
 */
 
+.book {
+  width: 100%;
+}
+
 .book__image {
   width: 75px;
 }
