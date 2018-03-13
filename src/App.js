@@ -29,10 +29,15 @@ class Cart extends React.Component {
       (i) => <CartItem key={i.id} item={i} 
                        removeHandler={this.props.removeHandler} />
     );
-    
+
     return (
       <div id="shoping-cart" className="card">
         <div className="card-body">
+          {
+            this.props.cart.length === 0 && (
+              <p>Your cart is empty</p>
+            )
+          }
           <ul className="list-unstyled">
             {cartItems}
           </ul>
@@ -53,14 +58,13 @@ const CartTotal = ({items}) => (
     <button type="button" className="btn btn-primary btn-sm">Checkout</button>
   </div>
 )
-  
-  
+
 class CartItem extends React.Component {
   handleRemove = (e) => {
     e.preventDefault();
     this.props.removeHandler(this.props.item.id);
   }
-  
+
   render() {
     return (
       <li className="media cart-item my-4">
@@ -92,7 +96,7 @@ class BookItem extends React.Component {
     e.preventDefault();
     this.props.addHandler(this.props.book);
   }
-  
+
   render() {
     return (
       <li className="media book my-4">
@@ -115,7 +119,7 @@ class BookList extends React.Component {
       (b) => <BookItem key={b.id} book={b} 
                         addHandler={this.props.addHandler} />
     );
-    
+
     return (
       <ul className="list-unstyled d-flex flex-row flex-wrap justify-content-between">
         {displayedBooks}
@@ -129,15 +133,15 @@ class AmazoffApp extends Component {
     cartAPI.add(item);
     this.setState({});
   }
-  
+
   removeFromCart = (id) => {
     cartAPI.remove(id);
     this.setState({});
   }
-  
+
   render() {
     let cart = cartAPI.getCartContents();
-    
+
     return (
       <div className="view-container">
         <Header />
