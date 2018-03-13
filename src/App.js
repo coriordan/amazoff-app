@@ -26,7 +26,8 @@ const Header = () => {
 class Cart extends React.Component {
   render() {
     let cartItems = this.props.cart.map(
-      (i) => <CartItem key={i.id} item={i} />
+      (i) => <CartItem key={i.id} item={i} 
+                       removeHandler={this.props.removeHandler} />
     );
     
     return (
@@ -55,6 +56,11 @@ const CartTotal = ({items}) => (
   
   
 class CartItem extends React.Component {
+  handleRemove = (e) => {
+    e.preventDefault();
+    this.props.removeHandler(this.props.item.id);
+  }
+  
   render() {
     return (
       <li className="media cart-item my-4">
@@ -72,7 +78,7 @@ class CartItem extends React.Component {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <button type="button" className="close" aria-label="Close">
+            <button type="button" className="close" aria-label="Close" onClick={this.handleRemove}>
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
