@@ -27,7 +27,8 @@ class CartAPI {
     if (index !== -1) {
       this.cart[index].quantity++;
     } else {
-      _.union(this.cart, [item]);
+      item.quantity = 1;
+      this.cart.push(item);
     } 
   }
 }

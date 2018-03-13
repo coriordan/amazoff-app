@@ -79,6 +79,11 @@ class CartItem extends React.Component {
 }
 
 class BookItem extends React.Component {
+  handleAdd = (e) => {
+    e.preventDefault();
+    this.props.addHandler(this.props.book);
+  }
+  
   render() {
     return (
       <li className="media book my-4">
@@ -87,6 +92,8 @@ class BookItem extends React.Component {
           <h6 className="book__title mt-0 mb-1">{this.props.book.title}</h6>
           <div className="text-muted h6">{this.props.book.author}</div>
           <div className="text-muted h6">{this.props.book.price.currency + ' ' + this.props.book.price.amount}</div>
+          <button type="button" className="btn btn-outline-primary btn-sm"
+                                onClick={this.handleAdd}>Add to Cart</button>
         </div>
       </li>
     );
@@ -96,7 +103,8 @@ class BookItem extends React.Component {
 class BookList extends React.Component {
   render() {
     let displayedBooks = this.props.books.map(
-      (b) => <BookItem key={b.id} book={b} />
+      (b) => <BookItem key={b.id} book={b} 
+                        addHandler={this.props.addHandler} />
     );
     
     return (
