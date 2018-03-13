@@ -23,31 +23,30 @@ const Header = () => {
   );
 }
 
-class Cart extends React.Component {
-  render() {
-    let cartItems = this.props.cart.map(
-      (i) => <CartItem key={i.id} item={i} 
-                       removeHandler={this.props.removeHandler} 
-                       updateQuantityHandler={this.props.updateQuantityHandler}/>
-    );
+const Cart = ({cart, removeHandler, 
+                     updateQuantityHandler}) => {
+  let cartItems = cart.map(
+    (i) => <CartItem key={i.id} item={i} 
+                     removeHandler={removeHandler} 
+                     updateQuantityHandler={updateQuantityHandler}/>
+  );
 
-    return (
-      <div id="shoping-cart" className="card">
-        <div className="card-body">
-          {
-            this.props.cart.length === 0 && (
-              <p>Your cart is empty</p>
-            )
-          }
-          <ul className="list-unstyled">
-            {cartItems}
-          </ul>
-          <hr/>
-          <CartTotal items={this.props.cart} />
-        </div>
+  return (
+    <div id="shoping-cart" className="card">
+      <div className="card-body">
+        {
+          cart.length === 0 && (
+            <p>Your cart is empty</p>
+          )
+        }
+        <ul className="list-unstyled">
+          {cartItems}
+        </ul>
+        <hr/>
+        <CartTotal items={cart} />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 const CartTotal = ({items}) => (
