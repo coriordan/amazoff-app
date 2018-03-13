@@ -30,11 +30,14 @@ class Cart extends React.Component {
     );
     
     return (
-      <div id="shoping-cart">
-        <ul className="list-unstyled">
-        {cartItems}
-        </ul>
-        <hr/>
+      <div id="shoping-cart" className="card">
+        <div className="card-body">
+          <ul className="list-unstyled">
+            {cartItems}
+          </ul>
+          <hr/>
+          <CartTotal items={this.props.cart} />
+        </div>
       </div>
     );
   }
@@ -143,7 +146,6 @@ class AmazoffApp extends Component {
               <h5>Shopping Cart</h5>
               <Cart cart={cart} 
                     removeHandler={this.removeFromCart} />
-              <CartTotal items={cart} />
             </aside>
           </div>
         </div>
