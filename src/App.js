@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cartAPI from './test/cartAPI';
+import _ from 'lodash';
 import './App.css';
 
 const Header = () => {
@@ -81,7 +82,8 @@ class CartItem extends React.Component {
             <h6 className="cart-item__title mt-0 mb-1">{this.props.item.title}</h6>
             <div className="cart-item__meta text-muted">by {this.props.item.author}</div>
           </div>
-          <div className="cart-item__meta text-muted">{this.props.item.price.currency + ' ' + this.props.item.price.amount}</div>
+          <div className="cart-item__meta text-muted">{this.props.item.price.currency + ' ' + 
+                                                       Number(this.props.item.price.amount).toFixed(2)}</div>
           <select id="cart-item__quantity" value={this.props.item.quantity} 
                   className="form-control form-control-sm" style={{width: '15%'}}
                   onChange={this.handleUpdateQuantity}>
@@ -100,6 +102,30 @@ class CartItem extends React.Component {
   }
 }
 
+class BookSortSelect extends React.Component {
+  handleSortChange = (e) => {
+    e.preventDefault();
+    this.props.onUpdateSort(e.target.value);
+  }
+  
+  render () {
+    return (
+      <form className="form-inline">
+        <div className="form-group">
+          <label>Sort by:&nbsp;</label>
+          <select value={this.props.sort} 
+              className="form-control form-control-sm custom-select custom-select-sm" 
+              onChange={this.handleSortChange}>
+            <option value="title">Title</option> 
+            <option value="price.amount">Price</option>
+            <option value="author">Author</option>
+          </select>
+        </div>
+      </form>
+    );
+  }
+}
+
 class BookItem extends React.Component {
   handleAdd = (e) => {
     e.preventDefault();
@@ -113,7 +139,8 @@ class BookItem extends React.Component {
         <div className="media-body">
           <h6 className="book__title mt-0 mb-1">{this.props.book.title}</h6>
           <div className="text-muted h6">{this.props.book.author}</div>
-          <div className="text-muted h6">{this.props.book.price.currency + ' ' + this.props.book.price.amount}</div>
+          <div className="text-muted h6">{this.props.book.price.currency + ' ' + 
+                                          Number(this.props.book.price.amount).toFixed(2)}</div>
           <button type="button" className="btn btn-outline-primary btn-sm"
                                 onClick={this.handleAdd}>Add to Cart</button>
         </div>
@@ -124,7 +151,9 @@ class BookItem extends React.Component {
 
 class BookList extends React.Component {
   render() {
-    let displayedBooks = this.props.books.map(
+    let sortedList = _.sortBy(this.props.books, this.props.sort);
+    
+    let displayedBooks = sortedList.map(
       (b) => <BookItem key={b.id} book={b} 
                         addHandler={this.props.addHandler} />
     );
@@ -138,6 +167,13 @@ class BookList extends React.Component {
 }
 
 class AmazoffApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sort : 'title'
+    };
+  }
+  
   addToCart = (item) => {
     cartAPI.add(item);
     this.setState({});
@@ -152,7 +188,11 @@ class AmazoffApp extends Component {
     cartAPI.updateQuantity(id, quantity);
     this.setState({});
   }
-
+  
+  handleUpdateSort = (value) => {
+    this.setState({sort : value} );
+  }
+  
   render() {
     let cart = cartAPI.getCartContents();
 
@@ -162,9 +202,12 @@ class AmazoffApp extends Component {
         <div className="container-fluid pt-4">
           <div className="row">
             <main className="col-md-8" role="main">
-              <h4>Best Sellers</h4>
+              <div className="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
+                <h3>Best Sellers</h3>
+                <BookSortSelect onUpdateSort={this.handleUpdateSort} />
+              </div>
               <BookList books={this.props.books} 
-                        addHandler={this.addToCart} />
+                        addHandler={this.addToCart} sort={this.state.sort} />
             </main>
             <aside className="col-md-4">
               <h5>Shopping Cart</h5>
