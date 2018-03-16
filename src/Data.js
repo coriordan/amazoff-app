@@ -12,7 +12,7 @@ let AllBooks = [
     {
         'price': {
           'currency' : 'EUR',
-          'amount' : 34.96 
+          'amount' : 34.96
         },
         'id': 2, 
         'imageUrl': 'books/images/2.jpg',
@@ -46,7 +46,7 @@ let AllBooks = [
         },
         'id': 5, 
         'imageUrl': 'books/images/5.jpg', 
-        'title': 'Rework', 
+        'title': 'Rework: Change the Way You Work Forever', 
         'author': 'Jason Fried'
     }, 
     {

@@ -127,6 +127,10 @@ class BookSortSelect extends React.Component {
 }
 
 class BookItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
   handleAdd = (e) => {
     e.preventDefault();
     this.props.addHandler(this.props.book);
@@ -150,6 +154,10 @@ class BookItem extends React.Component {
 }
 
 class BookList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
   render() {
     let sortedList = _.sortBy(this.props.books, this.props.sort);
     

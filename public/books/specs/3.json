@@ -1,0 +1,29 @@
+{
+  "id": 3,
+  "title" : "About Face: The Essentials of Interaction Design",
+  "description" : "About Face: The Essentials of Interaction Design, Fourth Edition is the latest update to the book that shaped and evolved the landscape of interaction design. This comprehensive guide takes the worldwide shift to smartphones and tablets into account.  New information includes discussions on mobile apps, touch interfaces, screen size considerations, and more. The new full\u2013color interior and unique layout better illustrate modern design concepts. \r\n\r\nThe interaction design profession is blooming with the success of design\u2013intensive companies, priming customers to expect \"design\" as a critical ingredient of marketplace success. Consumers have little tolerance for websites, apps, and devices that don\u2032t live up to their expectations, and the responding shift in business philosophy has become widespread. About Face is the book that brought interaction design out of the research labs and into the everyday lexicon, and the updated Fourth Edition continues to lead the way with ideas and methods relevant to today\u2032s design practitioners and developers.\r\n\r\nUpdated information includes:\r\n\r\n    Contemporary interface, interaction, and product design methods\r\n    Design for mobile platforms and consumer electronics\r\n    State\u2013of\u2013the\u2013art interface recommendations and up\u2013to\u2013date examples\r\n    Updated Goal\u2013Directed Design methodology\r\n\r\nDesigners and developers looking to remain relevant through the current shift in consumer technology habits will find About Face to be a comprehensive, essential resource.",
+  "authors" : [
+    "Alan Cooper",
+    "Robert Reimann",
+    "David Cronin",
+    "Christopher Noessel"
+  ],
+  "published" : "2014-09-19",
+  "availableFormats" : [
+    {
+      "formatName" : "Kindle",
+      "price": {
+        "currency" : "EUR",
+        "amount" : 7.99
+      }
+    },
+    {
+      "formatName" : "Paperback",
+      "price": {
+        "currency" : "EUR",
+        "amount" : 36.47
+      }
+    }
+  ],
+  "imageUrl": "books/images/3.jpg"
+}

@@ -1,0 +1,26 @@
+{
+  "id": 2,
+  "title" : "Envisioning Information",
+  "description" : "",
+  "authors" : [
+    "Edward R. Tufte" 
+  ],
+  "published" : "1990-01-01",
+  "availableFormats" : [
+    {
+      "formatName" : "Hardcover",
+      "price": {
+        "currency" : "EUR",
+        "amount" : 24.99 
+      }
+    },
+    {
+      "formatName" : "Paperback",
+      "price": {
+        "currency" : "EUR",
+        "amount" : 34.96
+      }
+    }
+  ],
+  "imageUrl": "books/images/2.jpg"
+}
