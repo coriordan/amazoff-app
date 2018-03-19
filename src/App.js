@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cartAPI from './test/cartAPI';
-import Header from './header';
 import Cart from './cart';
+import {Books} from './Data';
 import _ from 'lodash';
 import './App.css';
 
@@ -101,27 +101,22 @@ class AmazoffApp extends Component {
     let cart = cartAPI.getCartContents();
 
     return (
-      <div className="view-container">
-        <Header />
-        <div className="container-fluid pt-4">
-          <div className="row">
-            <main className="col-md-8" role="main">
-              <div className="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
-                <h3>Best Sellers</h3>
-                <BookSortSelect onUpdateSort={this.handleUpdateSort} />
-              </div>
-              <BookList books={this.props.books} 
-                        addHandler={this.addToCart} sort={this.state.sort} />
-            </main>
-            <aside className="col-md-4">
-              <h5>Shopping Cart</h5>
-              <Cart cart={cart} 
-                    removeHandler={this.removeFromCart} 
-                    updateQuantityHandler={this.updateQuantity} />
-            </aside>
-          </div>
+        <div className="row">
+          <main className="col-md-8" role="main">
+            <div className="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
+              <h3>Best Sellers</h3>
+              <BookSortSelect onUpdateSort={this.handleUpdateSort} />
+            </div>
+            <BookList books={Books} 
+                      addHandler={this.addToCart} sort={this.state.sort} />
+          </main>
+          <aside className="col-md-4">
+            <h5>Shopping Cart</h5>
+            <Cart cart={cart} 
+                  removeHandler={this.removeFromCart} 
+                  updateQuantityHandler={this.updateQuantity} />
+          </aside>
         </div>
-      </div>
     );
   }
 }
