@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
-import AmazoffApp from './App';
+import Home from './App';
 import Header from './header';
+import BookDetail from './bookDetail';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const Router = (props) => {
@@ -12,7 +13,8 @@ const Router = (props) => {
         <Header />
         <div className="container-fluid pt-4">
           <Switch>
-              <Route exact path='/' component={AmazoffApp} />
+              <Route exact path='/' component={Home} />
+              <Route path='/book/:id' component={ BookDetail } />
               <Redirect from='*' to='/' />
             </Switch>
         </div>

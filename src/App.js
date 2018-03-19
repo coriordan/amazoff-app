@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import cartAPI from './test/cartAPI';
 import Cart from './cart';
 import {Books} from './Data';
@@ -39,9 +40,13 @@ class BookItem extends React.Component {
   render() {
     return (
       <li className="media book my-4">
-        <img className="book__image mr-3" src={this.props.book.imageUrl} alt={this.props.book.title}/>
+        <Link to={'/book/' + this.props.book.id}>
+          <img className="book__image mr-3" src={this.props.book.imageUrl} alt={this.props.book.title}/>   
+        </Link>
         <div className="media-body">
-          <h6 className="book__title mt-0 mb-1">{this.props.book.title}</h6>
+          <Link to={'/book/' + this.props.book.id}>
+            <h6 className="book__title mt-0 mb-1">{this.props.book.title}</h6>
+          </Link>
           <div className="text-muted h6">{this.props.book.author}</div>
           <div className="text-muted h6">{this.props.book.price.currency + ' ' + 
                                           Number(this.props.book.price.amount).toFixed(2)}</div>
@@ -70,7 +75,7 @@ class BookList extends React.Component {
   }
 }
 
-class AmazoffApp extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -121,4 +126,4 @@ class AmazoffApp extends Component {
   }
 }
 
-export default AmazoffApp;
+export default Home;
