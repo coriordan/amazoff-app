@@ -5,8 +5,15 @@ import request from 'superagent' ;
 
 const BookFormat = ({format}) => {
   
+  const handleClick = (e) => {
+    let card = e.currentTarget;
+    card.classList.add('bg-success', 'text-white');
+    let siblings = [...card.parentElement.children].filter(c => c!=card);
+    siblings.forEach(s => s.classList.remove('bg-success', 'text-white'));
+  }
+  
   return (
-    <li className="card w-25 mr-3">
+    <li className="book__format card w-25 mr-3" onClick={handleClick}>
       <div className="card-body">
         <h6 className="card-title">{format.formatName}</h6>
         <p className="card-text">{format.price.currency + ' ' + 
@@ -41,14 +48,15 @@ const BookSpecification = ({book}) => {
   
   return (
     <div className="media">
-      <img className="book__image--large mr-3" src={book.imageUrl} alt={book.title}/>
+      <img className="book__image--large mr-4" src={book.imageUrl} alt={book.title}/>
       <div className="media-body">
         <h3 className="book__title mt-0 mb-3">{book.title}</h3>
         <span className="text-muted float-left">by&nbsp;</span>
         <ul className="list-unstyled book__authors">
           {bookAuthors}
         </ul>
-        <hr/>  
+        <hr/>
+        <h6>Available formats</h6>    
         <BookFormatList formats={book.availableFormats} />
         <p className="book__description">{book.description}</p>
       </div>

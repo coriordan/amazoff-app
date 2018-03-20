@@ -30,8 +30,12 @@ $BOOK
   content: normal;
 }
 
-.book__authors > li:last-child:before {
-  content: '\0000a0and\0000a0';
+.book__authors > li:nth-child(n+2):last-child:before {
+  content: "\0000a0and\00a0";
+}
+
+.book__format:hover {
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
