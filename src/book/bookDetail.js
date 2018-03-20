@@ -3,13 +3,14 @@ import { withRouter } from 'react-router-dom';
 import localCache from './localCache';
 import request from 'superagent' ;
 
-const BookFormat = ({format}) => {
+const BookFormat = ({format, updateBookFormatHandler}) => {
   
   const handleClick = (e) => {
     let card = e.currentTarget;
     card.classList.add('bg-success', 'text-white');
     let siblings = [...card.parentElement.children].filter(c => c!=card);
     siblings.forEach(s => s.classList.remove('bg-success', 'text-white'));
+    updateBookFormatHandler(format);
   }
   
   return (
@@ -23,9 +24,10 @@ const BookFormat = ({format}) => {
   );
 }
 
-const BookFormatList = ({formats}) => {
+const BookFormatList = ({formats, updateBookFormatHandler}) => {
   let displayedFormats = formats.map(
-    (f, i) => <BookFormat key={f.formatName} format={f} />
+    (f, i) => <BookFormat key={f.formatName} format={f} 
+                          updateBookFormatHandler={updateBookFormatHandler}/>
   );
 
   return (
@@ -41,7 +43,7 @@ const BookAuthor = ({author}) => {
   );
 }
 
-const BookSpecification = ({book}) => {
+const BookSpecification = ({book, updateBookFormatHandler}) => {
   let bookAuthors = book.authors.map(
     (a, i) => <BookAuthor key={i} author={a} />  
   ); 
@@ -57,7 +59,7 @@ const BookSpecification = ({book}) => {
         </ul>
         <hr/>
         <h6>Available formats</h6>    
-        <BookFormatList formats={book.availableFormats} />
+        <BookFormatList formats={book.availableFormats} updateBookFormatHandler={updateBookFormatHandler}/>
         <p className="book__description">{book.description}</p>
       </div>
     
@@ -68,6 +70,17 @@ const BookSpecification = ({book}) => {
 
 
 class BookDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bookFormat : ''
+    };
+  }
+  
+  setFormat = (format) => {
+    this.setState({bookFormat: format});
+  }
+  
   componentDidMount() {
     request.get(
       '/books/specs/' + this.props.match.params.id + '.json',
@@ -83,7 +96,8 @@ class BookDetail extends React.Component {
     let book = localCache.getBook();
     if (book) {
       display = (
-        <BookSpecification book={book} />
+        <BookSpecification book={book} 
+                           updateBookFormatHandler={this.setFormat}/>
       );
     }
     
