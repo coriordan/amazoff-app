@@ -31,31 +31,30 @@ class BookSortSelect extends React.Component {
   }
 }
 
-class BookItem extends React.Component {
-  handleAdd = (e) => {
+const BookItem = ({book, addHandler}) => {
+  
+  const handleAdd = (e) => {
     e.preventDefault();
-    this.props.addHandler(this.props.book);
-  }
+    addHandler(book);
+  };
 
-  render() {
-    return (
+  return (
       <li className="media book my-4">
-        <Link to={'/book/' + this.props.book.id}>
-          <img className="book__image mr-3" src={this.props.book.imageUrl} alt={this.props.book.title}/>   
+        <Link to={'/book/' + book.id}>
+          <img className="book__image mr-3" src={book.imageUrl} alt={book.title}/>   
         </Link>
         <div className="media-body">
-          <Link to={'/book/' + this.props.book.id}>
-            <h6 className="book__title mt-0 mb-1">{this.props.book.title}</h6>
+          <Link to={'/book/' + book.id}>
+            <h6 className="book__title mt-0 mb-1">{book.title}</h6>
           </Link>
-          <div className="text-muted h6">{this.props.book.author}</div>
-          <div className="text-muted h6">{this.props.book.price.currency + ' ' + 
-                                          Number(this.props.book.price.amount).toFixed(2)}</div>
+          <div className="text-muted h6">{book.author}</div>
+          <div className="text-muted h6">{book.price.currency + ' ' + 
+                                          Number(book.price.amount).toFixed(2)}</div>
           <button type="button" className="btn btn-outline-primary btn-sm"
-                                onClick={this.handleAdd}>Add to Cart</button>
+                                onClick={handleAdd}>Add to Cart</button>
         </div>
       </li>
-    );
-  }
+  );
 }
 
 class BookList extends React.Component {
