@@ -18,7 +18,3 @@ class BookDetail extends React.Component {
 };
 
 export default withRouter(BookDetail);
-
-
-
-

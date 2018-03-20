@@ -32,7 +32,6 @@ class BookSortSelect extends React.Component {
 }
 
 const BookItem = ({book, addHandler}) => {
-  
   const handleAdd = (e) => {
     e.preventDefault();
     addHandler(book);
