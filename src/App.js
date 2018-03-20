@@ -106,10 +106,10 @@ class Home extends Component {
     return (
         <div className="row">
           <main className="col-md-8" role="main">
-            <div className="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
+            <header className="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
               <h3>Best Sellers</h3>
               <BookSortSelect onUpdateSort={this.handleUpdateSort} />
-            </div>
+            </header>
             <BookList books={Books} 
                       addHandler={this.addToCart} sort={this.state.sort} />
           </main>

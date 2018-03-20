@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 import Home from './App';
 import Header from './header';
-import BookDetail from './bookDetail';
+import BookDetail from './book/bookDetail';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const Router = (props) => {

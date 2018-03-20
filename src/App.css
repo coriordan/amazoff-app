@@ -14,8 +14,24 @@ $BOOK
   width: 75px;
 }
 
+.book__image--large {
+  width: 200px;
+}
+
 .book__title {
   font-weight: 300;
+}
+
+.book__authors > li:before {
+  content:',\0000a0';
+}
+
+.book__authors > li:first-child:before {
+  content: normal;
+}
+
+.book__authors > li:last-child:before {
+  content: '\0000a0and\0000a0';
 }
 
 @media (min-width: 768px) {
