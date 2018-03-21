@@ -3,13 +3,25 @@ import { withRouter } from 'react-router-dom';
 import localCache from './localCache';
 import request from 'superagent' ;
 
+const BuyButton = ({format}) => {
+  return (
+    <div className="mb-4">    
+      <button type="button" className="btn btn-primary btn-lg btn-block" disabled={!format}>Add to Cart</button>
+    </div>
+  );
+} 
+
 const BookFormat = ({format, updateBookFormatHandler}) => {
+  const setCurrentFormat = (card) => {
+    card.classList.add('border', 'border-warning', 'font-weight-bold');
+    let siblings = [...card.parentElement.children].filter(c => c != card);
+    siblings.forEach(s => s.classList.remove('border', 
+                                              'border-warning', 'font-weight-bold'));
+  }
   
   const handleClick = (e) => {
     let card = e.currentTarget;
-    card.classList.add('bg-success', 'text-white');
-    let siblings = [...card.parentElement.children].filter(c => c!=card);
-    siblings.forEach(s => s.classList.remove('bg-success', 'text-white'));
+    setCurrentFormat(card);
     updateBookFormatHandler(format);
   }
   
@@ -33,7 +45,7 @@ const BookFormatList = ({formats, updateBookFormatHandler}) => {
   return (
     <ul className="list-unstyled d-flex flex-row flex-wrap ">
       {displayedFormats}
-    </ul>
+    </ul>  
   );
 }
 
@@ -43,7 +55,7 @@ const BookAuthor = ({author}) => {
   );
 }
 
-const BookSpecification = ({book, updateBookFormatHandler}) => {
+const BookSpecification = ({book, bookFormat, updateBookFormatHandler}) => {
   let bookAuthors = book.authors.map(
     (a, i) => <BookAuthor key={i} author={a} />  
   ); 
@@ -60,20 +72,20 @@ const BookSpecification = ({book, updateBookFormatHandler}) => {
         <hr/>
         <h6>Available formats</h6>    
         <BookFormatList formats={book.availableFormats} updateBookFormatHandler={updateBookFormatHandler}/>
+        <BuyButton format={bookFormat} />
+        <h3>Description</h3>
         <p className="book__description">{book.description}</p>
       </div>
-    
     </div>
     
   );
 }
 
-
 class BookDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookFormat : ''
+      bookFormat : null
     };
   }
   
@@ -97,7 +109,8 @@ class BookDetail extends React.Component {
     if (book) {
       display = (
         <BookSpecification book={book} 
-                           updateBookFormatHandler={this.setFormat}/>
+                           updateBookFormatHandler={this.setFormat} 
+                           bookFormat={this.state.bookFormat}/>
       );
     }
     
@@ -107,7 +120,6 @@ class BookDetail extends React.Component {
           {display}
         </main>
         <aside className="col-md-4">
-          
         </aside>
       </div>
     );
