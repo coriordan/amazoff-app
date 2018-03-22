@@ -9,7 +9,7 @@
   "products" : [
     {
       "productId" : 21,
-      "formatName" : "Kindle",
+      "format" : "Kindle",
       "price": {
         "currency" : "EUR",
         "amount" : 7.99
@@ -17,7 +17,7 @@
     },
     {
       "productId" : 22,
-      "formatName" : "Paperback",
+      "format" : "Paperback",
       "price": {
         "currency" : "EUR",
         "amount" : 27.25

@@ -6,29 +6,26 @@ import {Books} from './Data';
 import _ from 'lodash';
 import './App.css';
 
-
-class BookSortSelect extends React.Component {
-  handleSortChange = (e) => {
+const BookSortSelect = ({sort, onUpdateSort}) => {
+  const handleSortChange = (e) => {
     e.preventDefault();
-    this.props.onUpdateSort(e.target.value);
+    onUpdateSort(e.target.value);
   }
   
-  render () {
-    return (
-      <form className="form-inline">
-        <div className="form-group">
-          <label>Sort by:&nbsp;</label>
-          <select value={this.props.sort} 
-              className="form-control form-control-sm custom-select custom-select-sm" 
-              onChange={this.handleSortChange}>
-            <option value="title">Title</option> 
-            <option value="price.amount">Price</option>
-            <option value="author">Author</option>
-          </select>
-        </div>
-      </form>
-    );
-  }
+  return (
+    <form className="form-inline">
+      <div className="form-group">
+        <label>Sort by:&nbsp;</label>
+        <select value={sort} 
+            className="form-control form-control-sm custom-select custom-select-sm" 
+            onChange={handleSortChange}>
+          <option value="title">Title</option> 
+          <option value="price.amount">Price</option>
+          <option value="author">Author</option>
+        </select>
+      </div>
+    </form>
+  );
 }
 
 const BookItem = ({book, addHandler}) => {
@@ -39,11 +36,11 @@ const BookItem = ({book, addHandler}) => {
 
   return (
       <li className="media book my-4">
-        <Link to={'/book/' + book.id}>
+        <Link to={'/book/' + book.bookId}>
           <img className="book__image mr-3" src={book.imageUrl} alt={book.title}/>   
         </Link>
         <div className="media-body">
-          <Link to={'/book/' + book.id}>
+          <Link to={'/book/' + book.bookId}>
             <h6 className="book__title mt-0 mb-1">{book.title}</h6>
           </Link>
           <div className="text-muted h6">{book.author}</div>
@@ -56,21 +53,18 @@ const BookItem = ({book, addHandler}) => {
   );
 }
 
-class BookList extends React.Component {
-  render() {
-    let sortedList = _.sortBy(this.props.books, this.props.sort);
+const BookList = ({books, sort, ...props}) => {
+  let sortedList = _.sortBy(books, sort);
     
-    let displayedBooks = sortedList.map(
-      (b) => <BookItem key={b.bookId} book={b} 
-                        addHandler={this.props.addHandler} />
-    );
+  let displayedBooks = sortedList.map(
+    (b) => <BookItem key={b.bookId} book={b} {...props} />
+  );
 
-    return (
-      <ul className="list-unstyled d-flex flex-row flex-wrap justify-content-between">
-        {displayedBooks}
-      </ul>
-    );
-  }
+  return (
+    <ul className="list-unstyled d-flex flex-row flex-wrap justify-content-between">
+      {displayedBooks}
+    </ul>
+  );
 }
 
 class Home extends Component {
@@ -110,7 +104,7 @@ class Home extends Component {
           <main className="col-md-8" role="main">
             <header className="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
               <h3>Best Sellers</h3>
-              <BookSortSelect onUpdateSort={this.handleUpdateSort} />
+              <BookSortSelect sort={this.state.sort} onUpdateSort={this.handleUpdateSort} />
             </header>
             <BookList books={Books} 
                       addHandler={this.addToCart} sort={this.state.sort} />

@@ -5,48 +5,54 @@ import localCache from './localCache';
 import Cart from '../cart';
 import cartAPI from '../test/cartAPI';
 
-const BuyButton = ({format}) => {
+const BuyButton = ({selectedProductIndex, addHandler, book}) => {
+  const handleClick = (e) => {
+    addHandler(book);
+  }
+  
+  let disabled = (selectedProductIndex < 0);
+
   return (
     <div className="mb-4">    
-      <button type="button" className="btn btn-primary btn-lg btn-block" disabled={!format}>Add to Cart</button>
+      <button type="button" className="btn btn-outline-primary btn-lg btn-block" 
+              disabled={disabled} onClick={handleClick}>Add to Cart</button>
     </div>
   );
 } 
 
-const BookFormat = ({format, updateBookFormatHandler}) => {
-  const setCurrentFormat = (card) => {
+const Product = ({product, index, updateSelectedProductHandler}) => {
+  const setSelectedProduct = (card) => {
     card.classList.add('border', 'border-warning', 'font-weight-bold');
-    let siblings = [...card.parentElement.children].filter(c => c != card);
+    let siblings = [...card.parentElement.children].filter(c => c !== card);
     siblings.forEach(s => s.classList.remove('border', 
                                               'border-warning', 'font-weight-bold'));
   }
-  
+
   const handleClick = (e) => {
     let card = e.currentTarget;
-    setCurrentFormat(card);
-    updateBookFormatHandler(format);
+    setSelectedProduct(card);
+    updateSelectedProductHandler(index);
   }
-  
+
   return (
     <li className="book__format card w-25 mr-3" onClick={handleClick}>
       <div className="card-body">
-        <h6 className="card-title">{format.formatName}</h6>
-        <p className="card-text">{format.price.currency + ' ' + 
-                                    Number(format.price.amount).toFixed(2)}</p>
+        <h6 className="card-title">{product.format}</h6>
+        <p className="card-text">{product.price.currency + ' ' + 
+                                    Number(product.price.amount).toFixed(2)}</p>
       </div>
     </li>
   );
 }
 
-const BookFormatList = ({formats, updateBookFormatHandler}) => {
-  let displayedFormats = formats.map(
-    (f, i) => <BookFormat key={f.formatName} format={f} 
-                          updateBookFormatHandler={updateBookFormatHandler}/>
+const ProductsList = ({products, ...props}) => {
+  let displayedProducts = products.map(
+    (p, i) => <Product key={p.productId} {...props} product={p} index={i}/>
   );
 
   return (
     <ul className="list-unstyled d-flex flex-row flex-wrap ">
-      {displayedFormats}
+      {displayedProducts}
     </ul>  
   );
 }
@@ -57,11 +63,11 @@ const BookAuthor = ({author}) => {
   );
 }
 
-const BookSpecification = ({book, bookFormat, updateBookFormatHandler}) => {
+const BookSpecification = ({book, ...props}) => {
   let bookAuthors = book.authors.map(
     (a, i) => <BookAuthor key={i} author={a} />  
   ); 
-  
+
   return (
     <div className="media">
       <img className="book__image--large mr-4" src={book.imageUrl} alt={book.title}/>
@@ -72,14 +78,12 @@ const BookSpecification = ({book, bookFormat, updateBookFormatHandler}) => {
           {bookAuthors}
         </ul>
         <hr/>
-        <h6>Available formats</h6>    
-        <BookFormatList formats={book.availableFormats} updateBookFormatHandler={updateBookFormatHandler}/>
-        <BuyButton format={bookFormat} />
+        <h6>Available formats</h6>
+        <ProductsList {...props}/>
         <h3>Description</h3>
         <p className="book__description">{book.description}</p>
       </div>
     </div>
-    
   );
 }
 
@@ -87,12 +91,21 @@ class BookDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookFormat : null
+      selectedProductIndex : -1
     };
   }
   
-  setFormat = (format) => {
-    this.setState({bookFormat: format});
+  setSelectedProduct = (index) => {
+    this.setState({selectedProductIndex: index});
+  }
+  
+  addToCart = (item) => {
+    let product = item.products[this.state.selectedProductIndex];
+    const {title, authors, imageUrl} = item;
+    let cartItem = Object.assign({}, product, {title, authors, imageUrl});    
+    console.log("Added cart item: " + JSON.stringify(cartItem));
+    cartAPI.add(cartItem);
+    this.setState({});
   }
   
   componentDidMount() {
@@ -104,19 +117,23 @@ class BookDetail extends React.Component {
         this.setState({});  
       });
   }
-  
+
   render() {
     let cart = cartAPI.getCartContents();
     let display = <p>Book details unavailable</p>;
     let book = localCache.getBook();
     if (book) {
       display = (
-        <BookSpecification book={book} 
-                           updateBookFormatHandler={this.setFormat} 
-                           bookFormat={this.state.bookFormat}/>
+        [
+          <BookSpecification book={book} 
+                             products={book.products}
+                             updateSelectedProductHandler={this.setSelectedProduct} />,
+          <BuyButton book={book} addHandler={this.addToCart} 
+                                 selectedProductIndex={this.state.selectedProductIndex} />
+        ]
       );
     }
-    
+
     return (
       <div className="row">
         <main className="col-md-8" role="main">

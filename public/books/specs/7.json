@@ -9,7 +9,7 @@
   "products" : [
     {
       "productId" : 15,
-      "formatName" : "Hardcover",
+      "format" : "Hardcover",
       "price": {
         "currency" : "EUR",
         "amount" : 40.99
@@ -17,7 +17,7 @@
     },
     {
       "productId" : 16,
-      "formatName" : "Paperback",
+      "format" : "Paperback",
       "price": {
         "currency" : "EUR",
         "amount" : 28.87

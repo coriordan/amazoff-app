@@ -40,8 +40,7 @@ class CartAPI {
   }
   
   updateQuantity(id, quantity) {
-    let cartItem = this[_getByID](id);
-    
+    let cartItem = this[_getByID](id);    
     if (cartItem) {
       cartItem.quantity = quantity;
     }
@@ -52,7 +51,6 @@ class CartAPI {
     let index = _.findIndex(this.cart, 
       (cartItem) => cartItem.productId === productId
     );
-    
     return this.cart[index];
   }
   
@@ -60,6 +58,7 @@ class CartAPI {
     let index = _.findIndex(this.cart,
       (cartItem) => cartItem.id === id
     );
+    return this.cart[index];
   }
 }
 
