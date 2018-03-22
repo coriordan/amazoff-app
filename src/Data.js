@@ -1,10 +1,10 @@
 let AllBooks = [ 
     {
-        'id': 1, 
-        "defaultFormat" :
+        'bookId': 1, 
+        "defaultProduct" :
         {
-          "id" : 2,
-          "name" : "Paperback",
+          "productId" : 2,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             "amount" : 22.95 
@@ -15,11 +15,11 @@ let AllBooks = [
         'author': 'Susan Weinschenk'
     }, 
     {
-        'id': 2, 
-        "defaultFormat" :
+        'bookId': 2, 
+        "defaultProduct" :
         {
-          "id" : 4,
-          "name" : "Paperback",
+          "productId" : 4,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 34.96
@@ -30,11 +30,11 @@ let AllBooks = [
         'author': 'Edward R. Tufte'
     },
     {
-        'id': 3,
-        "defaultFormat" :
+        'bookId': 3,
+        "defaultProduct" :
         {
-          "id" : 6,
-          "name" : "Paperback",
+          "productId" : 6,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 36.47
@@ -45,11 +45,11 @@ let AllBooks = [
         'author': 'Alan Cooper'
     }, 
     {
-        'id': 4,
-        "defaultFormat" :
+        'bookId': 4,
+        "defaultProduct" :
         {
-          "id" : 8,
-          "name" : "Paperback",
+          "productId" : 8,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 20.53
@@ -60,11 +60,11 @@ let AllBooks = [
         'author': 'Jon Duckett'
     }, 
     {
-        'id': 5, 
-        "defaultFormat" : 
+        'bookId': 5, 
+        "defaultProduct" : 
         {
-          "id" : 11,
-          "name" : "Paperback",
+          "productId" : 11,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 17.68
@@ -75,11 +75,11 @@ let AllBooks = [
         'author': 'Jason Fried'
     }, 
     {
-        'id': 6,
-        "defaultFormat" :
+        'bookId': 6,
+        "defaultProduct" :
         {
-          "id" : 14,
-          "name" : "Paperback",
+          "productId" : 14,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 15.59
@@ -90,11 +90,11 @@ let AllBooks = [
         'author': 'Jason Fried'
     }, 
     {
-        'id': 7,
-        "defaultFormat" :
+        'bookId': 7,
+        "defaultProduct" :
         {
-          "id" : 16,
-          "name" : "Paperback",
+          "productId" : 16,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 28.87
@@ -105,11 +105,11 @@ let AllBooks = [
         'author': 'Edward R. Tufte'
     }, 
     {
-        'id': 8,
-        "defaultFormat" :
+        'bookId': 8,
+        "defaultProduct" :
         {
-          "id" : 18,
-          "name" : "Paperback",
+          "productId" : 18,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 18.56
@@ -120,11 +120,11 @@ let AllBooks = [
         'author': 'Nir Eyal'
     }, 
     {
-        'id': 9,
-        "defaultFormat" :
+        'bookId': 9,
+        "defaultProduct" :
         {
-          "id" : 20,
-          "name" : "Paperback",
+          "productId" : 20,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 31.90
@@ -135,11 +135,11 @@ let AllBooks = [
         'author': 'Mark Boulton'
     }, 
     {
-        'id': 10,
-        "defaultFormat" :
+        'bookId': 10,
+        "defaultProduct" :
         {
-          "id" : 22,
-          "name" : "Paperback",
+          "productId" : 22,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 27.25
@@ -150,11 +150,11 @@ let AllBooks = [
         'author': 'Ellen Lupton'
     }, 
     {
-        'id': 11,
-        "defaultFormat" :
+        'bookId': 11,
+        "defaultProduct" :
         {
-          "id" : 24,
-          "name" : "Paperback",
+          "productId" : 24,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 24.90
@@ -165,11 +165,11 @@ let AllBooks = [
         'author': 'Jeffrey E.F. Friedl'
     }, 
     {
-        'id': 12,
-        "defaultFormat" : 
+        'bookId': 12,
+        "defaultProduct" : 
         {
-          "id" : 26,
-          "name" : "Paperback",
+          "productId" : 26,
+          "format" : "Paperback",
           "price": {
             "currency" : "EUR",
             'amount' : 21.80

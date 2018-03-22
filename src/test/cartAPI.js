@@ -1,13 +1,19 @@
 import _ from 'lodash';
 
+const _getByProductID = Symbol('getByProductID');
 const _getByID = Symbol('getByID');
 
 class CartAPI {
 
   constructor() {
     this.cart = [];
+    CartAPI.nextID = 1;
   }
-
+  
+  static uniqueID() {
+    return CartAPI.nextID++;  
+  }
+  
   getCartContents() {
     return this.cart;
   }
@@ -22,12 +28,13 @@ class CartAPI {
   add(item) {
     // if item already exists, increase item quantity in cart,
     // otherwise, add item
-    let cartItem = this[_getByID](item.format.id);
+    let cartItem = this[_getByProductID](item.productId);
     
     if (cartItem) {
       cartItem.quantity++;
     } else {
       item.quantity = 1;
+      item.id = CartAPI.uniqueID();
       this.cart.push(item);
     } 
   }
@@ -41,12 +48,18 @@ class CartAPI {
   }
   
   // private
-  [_getByID](id) {
+  [_getByProductID](productId) {
     let index = _.findIndex(this.cart, 
-      (cartItem) => cartItem.format.id === id
+      (cartItem) => cartItem.productId === productId
     );
     
     return this.cart[index];
+  }
+  
+  [_getByID](id) {
+    let index = _.findIndex(this.cart,
+      (cartItem) => cartItem.id === id
+    );
   }
 }
 

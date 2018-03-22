@@ -1,14 +1,14 @@
 {
-  "id": 6,
+  "bookId": 6,
   "title" : "Remote: Office Not Required",
   "description" : "For too long our lives have been dominated by the \u2018under one roof\u2019 Industrial Revolution model of work. That era is now over. There is no longer a reason for the daily roll call, of the need to be seen with your butt on your seat in the office. The technology to work remotely and to avoid the daily grind of commuting and meetings has finally come of age, and bestselling authors Jason Fried and David Heinemeier Hansson are the masters of making it work at tech company 37signals. Remote working is the future \u2013 and it is rushing towards us.\r\n\r\nRemote: Office Not Required combines eye-opening ideas with entertaining narrative. It will convince you that working remotely increases productivity and innovation, and it will also teach you how to get it right \u2013 whether you are a manager, working solo or one of a team. Chapters include: \u2018Talent isn\u2019t bound by the hubs\u2019, \u2018It\u2019s the technology, stupid\u2019, \u2018When to type, when to talk\u2019, \u2018Stop managing the chairs\u2019 and \u2018The virtual water cooler\u2019.\r\n\r\nBrilliantly simple and refreshingly illuminating this is a call to action to end the tyranny of being shackled to the office.",
   "authors" : [
     "Jason Fried", "David Heinemeier Hansson"
   ],
   "published" : "2013-10-29",
-  "availableFormats" : [
+  "products" : [
     {
-      "bookFormatId" : 12,
+      "productId" : 12,
       "formatName" : "Kindle",
       "price": {
         "currency" : "EUR",
@@ -16,7 +16,7 @@
       }
     },
     {
-      "bookFormatId" : 13,
+      "productId" : 13,
       "formatName" : "Hardcover",
       "price": {
         "currency" : "EUR",
@@ -24,7 +24,7 @@
       }
     },
     {
-      "bookFormatId" : 14,
+      "productId" : 14,
       "formatName" : "Paperback",
       "price": {
         "currency" : "EUR",

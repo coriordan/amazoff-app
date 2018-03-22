@@ -1,14 +1,14 @@
 {
-  "id": 12,
+  "bookId": 12,
   "title": "Design Patterns in Ruby",
   "description" : "Most design pattern books are based on C++ and Java. But Ruby is different\u2014and the language's unique qualities make design patterns easier to implement and use. In this book, Russ Olsen demonstrates how to combine Ruby's power and elegance with patterns, and write more sophisticated, effective software with far fewer lines of code.\r\n\r\nAfter reviewing the history, concepts, and goals of design patterns, Olsen offers a quick tour of the Ruby language\u2014enough to allow any experienced software developer to immediately utilize patterns with Ruby. The book especially calls attention to Ruby features that simplify the use of patterns, including dynamic typing, code closures, and \"mixins\" for easier code reuse.\r\n\r\nFourteen of the classic \"Gang of Four\" patterns are considered from the Ruby point of view, explaining what problems each pattern solves, discussing whether traditional implementations make sense in the Ruby environment, and introducing Ruby-specific improvements. You'll discover opportunities to implement patterns in just one or two lines of code, instead of the endlessly repeated boilerplate that conventional languages often require.\r\n\r\nDesign Patterns in Ruby also identifies innovative new patterns that have emerged from the Ruby community. These include ways to create custom objects with metaprogramming, as well as the ambitious Rails-based \"Convention Over Configuration\" pattern, designed to help integrate entire applications and frameworks.",
   "authors" : [
     "Russ Olsen"
   ],
   "published" : "2008-06-02",
-  "availableFormats" : [
+  "products" : [
     {
-      "bookFormatId" : 25,
+      "productId" : 25,
       "formatName" : "Kindle",
       "price": {
         "currency" : "EUR",
@@ -16,7 +16,7 @@
       }
     },
     {
-      "bookFormatId" : 26,
+      "productId" : 26,
       "formatName" : "Paperback",
       "price": {
         "currency" : "EUR",

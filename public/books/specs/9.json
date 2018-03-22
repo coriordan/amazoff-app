@@ -1,14 +1,14 @@
 {
-  "id": 9,
+  "bookId": 9,
   "title": "A Practical Guide to Designing for the Web",
   "description" : "A Practical Guide to Designing for the Web aims to teach you techniques for designing your website using the principles of graphic design. Featuring five sections, each covering a core aspect of graphic design: Getting Started, Research, Typography, Colour, and Layout. Learn solid graphic design theory that you can simply apply to your designs, making the difference from a good design to a great one.",
   "authors" : [
     "Mark Boulton"
   ],
   "published" : "2009-01-01",
-  "availableFormats" : [
+  "products" : [
     {
-      "bookFormatId" : 19,
+      "productId" : 19,
       "formatName" : "Kindle",
       "price": {
         "currency" : "EUR",
@@ -16,7 +16,7 @@
       }
     },
     {
-      "bookFormatId" : 20,
+      "productId" : 20,
       "formatName" : "Paperback",
       "price": {
         "currency" : "EUR",
