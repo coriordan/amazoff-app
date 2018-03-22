@@ -14,7 +14,7 @@ const Router = (props) => {
         <div className="container-fluid pt-4">
           <Switch>
               <Route exact path='/' component={Home} />
-              <Route path='/book/:id' component={ BookDetail } />
+              <Route path='/book/:id' component={BookDetail} />
               <Redirect from='*' to='/' />
             </Switch>
         </div>

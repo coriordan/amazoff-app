@@ -1,0 +1,28 @@
+{
+  "id": 8,
+  "title": "Hooked: How to Build Habit-Forming Products",
+  "description" : "Why do some products capture our attention while others flop? What makes us engage with certain things out of sheer habit? Is there an underlying pattern to how technologies hook us?\r\n\r\nNir Eyal answers these questions (and many more) with the Hook Model - a four-step process that, when embedded into products, subtly encourages customer behaviour. Through consecutive \"hook cycles,\" these products bring people back again and again without depending on costly advertising or aggressive messaging.\r\n\r\nHooked is based on Eyal's years of research, consulting, and practical experience. He wrote the book he wished had been available to him as a start-up founder - not abstract theory, but a how-to guide for building better products. Hooked is written for product managers, designers, marketers, start-up founders, and anyone who seeks to understand how products influence our behaviour.",
+  "authors" : [
+    "Nir Eyal"
+  ],
+  "published" : "2014-01-01",
+  "availableFormats" : [
+    {
+      "bookFormatId" : 17,
+      "formatName" : "Hardcover",
+      "price": {
+        "currency" : "EUR",
+        "amount" : 40.99
+      }
+    },
+    {
+      "bookFormatId" : 18,
+      "formatName" : "Paperback",
+      "price": {
+        "currency" : "EUR",
+        "amount" : 18.56
+      }
+    }
+  ],
+  "imageUrl": "/books/images/8.jpg"
+}

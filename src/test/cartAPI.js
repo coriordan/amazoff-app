@@ -22,7 +22,7 @@ class CartAPI {
   add(item) {
     // if item already exists, increase item quantity in cart,
     // otherwise, add item
-    let cartItem = this[_getByID](item.id);
+    let cartItem = this[_getByID](item.format.id);
     
     if (cartItem) {
       cartItem.quantity++;
@@ -43,7 +43,7 @@ class CartAPI {
   // private
   [_getByID](id) {
     let index = _.findIndex(this.cart, 
-      (cartItem) => cartItem.id === id
+      (cartItem) => cartItem.format.id === id
     );
     
     return this.cart[index];

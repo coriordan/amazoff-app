@@ -8,6 +8,7 @@
   "published" : "2011-11-18",
   "availableFormats" : [
     {
+      "bookFormatId" : 7,
       "formatName" : "Hardcover",
       "price": {
         "currency" : "EUR",
@@ -15,6 +16,7 @@
       }
     },
     {
+      "bookFormatId" : 8,
       "formatName" : "Paperback",
       "price": {
         "currency" : "EUR",

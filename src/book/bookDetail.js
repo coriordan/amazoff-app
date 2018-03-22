@@ -1,7 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import localCache from './localCache';
 import request from 'superagent' ;
+import localCache from './localCache';
+import Cart from '../cart';
+import cartAPI from '../test/cartAPI';
 
 const BuyButton = ({format}) => {
   return (
@@ -104,6 +106,7 @@ class BookDetail extends React.Component {
   }
   
   render() {
+    let cart = cartAPI.getCartContents();
     let display = <p>Book details unavailable</p>;
     let book = localCache.getBook();
     if (book) {
@@ -120,6 +123,8 @@ class BookDetail extends React.Component {
           {display}
         </main>
         <aside className="col-md-4">
+          <h5>Shopping Cart</h5>
+          <Cart cart={cart} />
         </aside>
       </div>
     );

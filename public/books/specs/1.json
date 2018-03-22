@@ -3,22 +3,24 @@
   "title" : "100 Things Every Designer Needs to Know About People",
   "description" : "We design to elicit responses from people. We want them to buy something, read more, or take action of some kind. Designing without understanding what makes people act the way they do is like exploring a new city without a map: results will be haphazard, confusing, and inefficient. This book combines real science and research with practical examples to deliver a guide every designer needs. With it you\u2019ll be able to design more intuitive and engaging work for print, websites, applications, and products that matches the way people think, work, and play.",
   "authors" : [
-    "Susan Weinschenk" 
+    "Susan Weinschenk"
   ],
   "published" : "2014-04-14",
   "availableFormats" : [
     {
+      "bookFormatId" : 1,
       "formatName" : "Kindle",
       "price": {
         "currency" : "EUR",
-        "amount" : 7.99 
+        "amount" : 7.99
       }
     },
     {
+      "bookFormatId" : 2,
       "formatName" : "Paperback",
       "price": {
         "currency" : "EUR",
-        "amount" : 22.95 
+        "amount" : 22.95
       }
     }
   ],

@@ -8,24 +8,27 @@
   "published" : "2013-10-29",
   "availableFormats" : [
     {
+      "bookFormatId" : 12,
       "formatName" : "Kindle",
       "price": {
         "currency" : "EUR",
-        "amount" : 7.99 
+        "amount" : 7.99
       }
     },
     {
+      "bookFormatId" : 13,
       "formatName" : "Hardcover",
       "price": {
         "currency" : "EUR",
-        "amount" : 20.99 
+        "amount" : 20.99
       }
     },
     {
+      "bookFormatId" : 14,
       "formatName" : "Paperback",
       "price": {
         "currency" : "EUR",
-        "amount" : 15.59 
+        "amount" : 15.59
       }
     }
   ],

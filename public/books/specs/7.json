@@ -1,0 +1,28 @@
+{
+  "id": 7,
+  "title": "Beautiful Evidence",
+  "description" : "Science and art have in common intense seeing, the wide-eyed observing that generates visual information. Beautiful Evidence is about how seeing turns into showing, how data and evidence turn into explanation. The book identifies excellent and effective methods for showing nearly every kind of information, suggests many new designs (including sparklines), and provides analytical tools for assessing the credibility of evidence presentations (which are seen from both sides: how to produce and how to consume presentations). For alert consumers of presentations, there are chapters on diagnosing evidence corruption and PowerPoint pitches. Beautiful Evidence concludes with 2 chapters that leave the world of pixel and paper flatland representations - and move onto seeing and thinking in space land, the real-land of three-space and time.",
+  "authors" : [
+    "Edward R. Tufte"
+  ],
+  "published" : "2006-07-01",
+  "availableFormats" : [
+    {
+      "bookFormatId" : 15,
+      "formatName" : "Hardcover",
+      "price": {
+        "currency" : "EUR",
+        "amount" : 40.99
+      }
+    },
+    {
+      "bookFormatId" : 16,
+      "formatName" : "Paperback",
+      "price": {
+        "currency" : "EUR",
+        "amount" : 28.87
+      }
+    }
+  ],
+  "imageUrl": "/books/images/7.jpg"
+}

@@ -34,7 +34,7 @@ class BookSortSelect extends React.Component {
 const BookItem = ({book, addHandler}) => {
   const handleAdd = (e) => {
     e.preventDefault();
-    addHandler(book);
+    addHandler(book, book.defaultFormat);
   };
 
   return (
@@ -47,8 +47,8 @@ const BookItem = ({book, addHandler}) => {
             <h6 className="book__title mt-0 mb-1">{book.title}</h6>
           </Link>
           <div className="text-muted h6">{book.author}</div>
-          <div className="text-muted h6">{book.price.currency + ' ' + 
-                                          Number(book.price.amount).toFixed(2)}</div>
+          <div className="text-muted h6">{book.defaultFormat.price.currency + ' ' + 
+                                          Number(book.defaultFormat.price.amount).toFixed(2)}</div>
           <button type="button" className="btn btn-outline-primary btn-sm"
                                 onClick={handleAdd}>Add to Cart</button>
         </div>
@@ -81,8 +81,8 @@ class Home extends Component {
     };
   }
   
-  addToCart = (item) => {
-    cartAPI.add(item);
+  addToCart = (item, format) => {
+    cartAPI.add({...item, format: format});
     this.setState({});
   }
 
