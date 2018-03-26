@@ -35,24 +35,28 @@ Checkout.defaultProps = {
 };
 
 const OrderSummary = ({items, shippingCosts}) => {
-  let disabled = (items.length === 0);
   let total = items.reduce(
               (sum, i) => (sum += i.quantity * i.price.amount), 0);
 
   return (
-
     <div id="order-summary">
       <h5>Order Summary</h5>
       <div className="card bg-light mb-3">
         <div className="card-body">
-          <dl className="row">
-            <dt className="col-md-8">Items</dt>
-            <dd className="col-md-4">EUR&nbsp;{Number(total).toFixed(2)}</dd>
-            <dt className="col-md-8">Shipping &amp; Handling</dt>
-            <dd className="col-md-4">EUR&nbsp;{shippingCosts}</dd>
-            <dt className="col-md-8">Order Total</dt>
-            <dd className="col-md-4">EUR&nbsp;{Number(total+shippingCosts).toFixed(2)}</dd>
-          </dl>
+          <ul className="list-unstyled">
+            <li className="list-unstyled d-flex flex-row justify-content-between align-items-start">
+              <p className="w-75">Items</p>
+              <p>EUR&nbsp;{Number(total).toFixed(2)}</p>
+            </li>
+            <li className="list-unstyled d-flex flex-row justify-content-between align-items-start">
+              <p className="w-75">Shipping &amp; Handling</p>
+              <p>EUR&nbsp;{shippingCosts}</p>
+            </li>
+            <li className="list-unstyled d-flex flex-row justify-content-between align-items-start mt-2 pt-3 border-top">
+              <strong className="w-75">Order Total</strong>
+              <strong>EUR&nbsp;{Number(total+shippingCosts).toFixed(2)}</strong>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
