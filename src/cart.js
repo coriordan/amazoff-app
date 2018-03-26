@@ -24,28 +24,30 @@ class Cart extends Component {
             {cartItems}
           </ul>
           <hr/>
-          <CartTotal items={this.props.cart} {...this.props}/>
+          <CartTotal items={this.props.cart} 
+                           {...this.props} />
         </div>
       </div>
     );
   }
 }
 
-const CartTotal = ({items, ...props}) => {
+const CartTotal = ({items, checkoutHandler}) => {
   let disabled = (items.length === 0);
   let total = items.reduce(
               (sum, i) => (sum += i.quantity * i.price.amount), 0);
   
   const handleCheckoutClick = (e) => {
     e.preventDefault();
-    props.history.push('/checkout')
+    checkoutHandler();
   }
   
   return (
     <div className="d-flex justify-content-between align-items-center"> 
       <span className="mr-auto">Sub total:</span>
           <strong className="pr-3">EUR&nbsp;{Number(total).toFixed(2)}</strong>
-      <button type="button" className="btn btn-primary btn-sm" disabled={disabled} onClick={handleCheckoutClick}>Checkout</button>
+      <button type="button" className="btn btn-primary btn-sm" 
+              disabled={disabled} onClick={handleCheckoutClick}>Checkout</button>
     </div>
   );
 }

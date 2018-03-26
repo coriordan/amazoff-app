@@ -96,6 +96,10 @@ class Home extends Component {
     this.setState({sort : value} );
   }
   
+  handleCheckout = () => {
+    this.props.history.push('/checkout');
+  }
+   
   render() {
     let cart = cartAPI.getCartContents();
 
@@ -113,7 +117,8 @@ class Home extends Component {
             <h5>Shopping Cart</h5>
             <Cart cart={cart} 
                   removeHandler={this.removeFromCart} 
-                  updateQuantityHandler={this.updateQuantity} {...this.props} />
+                  updateQuantityHandler={this.updateQuantity} 
+                  checkoutHandler = {this.handleCheckout} />
           </aside>
         </div>
     );
