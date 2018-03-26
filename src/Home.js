@@ -113,7 +113,7 @@ class Home extends Component {
             <h5>Shopping Cart</h5>
             <Cart cart={cart} 
                   removeHandler={this.removeFromCart} 
-                  updateQuantityHandler={this.updateQuantity} 
+                  updateQuantityHandler={this.updateQuantity}
                   {...this.props}/>
           </aside>
         </div>

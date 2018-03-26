@@ -59,6 +59,10 @@ $BOOK
   width: 40px;
 }
 
+.cart-item__image--large {
+  width: 75px;
+}
+
 .cart-item__title, .cart-item__meta {
   font-weight: 300;
   font-size: 0.9em;

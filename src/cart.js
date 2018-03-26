@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 
 class Cart extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
-  
+     
   handleCheckout = () => {
     this.props.history.push('/checkout');
   }
   
   render() {
+    let CartItemComponent = CartItem;
+    this.props.isCheckout && (CartItemComponent = CheckoutCartItem);
+    
     let cartItems = this.props.cart.map(
-      (i) => <CartItem key={i.id} item={i} 
+      (i) => <CartItemComponent key={i.id} item={i} 
                        {...this.props} />
     );
     
@@ -27,14 +30,24 @@ class Cart extends Component {
           <ul className="list-unstyled">
             {cartItems}
           </ul>
-          <hr/>
-          <CartTotal items={this.props.cart} 
-                           checkoutHandler = {this.handleCheckout} />
+          {
+            this.props.isCheckout === false && (
+            [
+              <hr/>,
+              <CartTotal items={this.props.cart} 
+                         checkoutHandler={this.handleCheckout} />
+            ]
+          )
+        }
         </div>
       </div>
     );
   }
 }
+
+Cart.defaultProps = {
+  isCheckout : false
+};
 
 const CartTotal = ({items, checkoutHandler}) => {
   let disabled = (items.length === 0);
@@ -72,7 +85,7 @@ const CartItem = ({item, removeHandler, updateQuantityHandler}) => {
       <img className="cart-item__image mr-3" src={item.imageUrl} alt={item.title}/>
       <div className="media-body d-flex flex-row justify-content-between align-items-start">
         <div className="w-50">
-    <h6 className="cart-item__title mt-0 mb-1">{item.title} ({item.format})</h6>
+          <h6 className="cart-item__title mt-0 mb-1">{item.title} ({item.format})</h6>
           <div className="cart-item__meta text-muted">by {item.author}</div>
         </div>
         <div className="cart-item__meta text-muted">{item.price.currency + ' ' + 
@@ -89,6 +102,21 @@ const CartItem = ({item, removeHandler, updateQuantityHandler}) => {
           <button type="button" className="close" aria-label="Close" onClick={handleRemove}>
             <span aria-hidden="true">&times;</span>
           </button>
+      </div>
+    </li>
+  );
+}
+
+const CheckoutCartItem = ({item}) => {
+  return (
+    <li className="media cart-item my-4">
+      <img className="cart-item__image--large mr-3" src={item.imageUrl} alt={item.title}/>
+      <div className="media-body">
+          <h6 className="cart-item__title mt-0 mb-1">{item.title} ({item.format})</h6>
+          <div className="cart-item__meta text-muted">by {item.author}</div>
+          <div className="cart-item__meta text-muted">{item.price.currency + ' ' + 
+                                                       Number(item.price.amount).toFixed(2)}</div>
+          <div className="cart-item__meta text-muted">x {item.quantity}</div>
       </div>
     </li>
   );
