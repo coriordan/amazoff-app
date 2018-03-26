@@ -9,6 +9,11 @@ class Checkout extends Component {
     super(props);
   }
 
+  completeOrderHandler = () => {
+    cartAPI.completeOrder();
+    this.props.history.push('/');
+  }
+
   render() {
     let cart = cartAPI.getCartContents();
     
@@ -24,6 +29,7 @@ class Checkout extends Component {
           </main>
           <aside className="col-md-4">
                   <OrderSummary items={cart} shippingCosts={this.props.shippingCosts}/>
+                  <CompleteOrderButton completeOrderHandler={this.completeOrderHandler}/>
           </aside>
         </div>
     );
@@ -60,6 +66,18 @@ const OrderSummary = ({items, shippingCosts}) => {
         </div>
       </div>
     </div>
+  );
+}
+
+const CompleteOrderButton = ({completeOrderHandler}) => {
+  
+  const handleClick = (e) => {
+    completeOrderHandler();
+  }
+  
+  return (
+      <button type="button" className="btn btn-primary btn-lg btn-block" 
+              onClick={handleClick}>Complete your Order</button>
   );
 }
 

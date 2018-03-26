@@ -46,6 +46,10 @@ class CartAPI {
     }
   }
   
+  completeOrder() {
+    this.cart = [];
+  }
+  
   // private
   [_getByProductID](productId) {
     let index = _.findIndex(this.cart, 
