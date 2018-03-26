@@ -1,41 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
-const Cart = ({cart, removeHandler, 
-                     updateQuantityHandler}) => {
-  let cartItems = cart.map(
-    (i) => <CartItem key={i.id} item={i} 
-                     removeHandler={removeHandler} 
-                     updateQuantityHandler={updateQuantityHandler}/>
-  );
-
-  return (
-    <div id="shoping-cart" className="card">
-      <div className="card-body">
-        {
-          cart.length === 0 && (
-            <p>Your cart is empty</p>
-          )
-        }
-        <ul className="list-unstyled">
-          {cartItems}
-        </ul>
-        <hr/>
-        <CartTotal items={cart} />
+class Cart extends Component {
+  constructor(props){
+    super(props);
+  }
+  
+  render() {
+    let cartItems = this.props.cart.map(
+      (i) => <CartItem key={i.id} item={i} 
+                       {...this.props} />
+    );
+    
+    return (
+      <div id="shoping-cart" className="card">
+        <div className="card-body">
+          {
+            this.props.cart.length === 0 && (
+              <p>Your cart is empty</p>
+            )
+          }
+          <ul className="list-unstyled">
+            {cartItems}
+          </ul>
+          <hr/>
+          <CartTotal items={this.props.cart} {...this.props}/>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-const CartTotal = ({items}) => {
+const CartTotal = ({items, ...props}) => {
   let disabled = (items.length === 0);
   let total = items.reduce(
               (sum, i) => (sum += i.quantity * i.price.amount), 0);
+  
+  const handleCheckoutClick = (e) => {
+    e.preventDefault();
+    props.history.push('/checkout')
+  }
+  
   return (
     <div className="d-flex justify-content-between align-items-center"> 
       <span className="mr-auto">Sub total:</span>
           <strong className="pr-3">EUR&nbsp;{Number(total).toFixed(2)}</strong>
-      <button type="button" className="btn btn-primary btn-sm" disabled={disabled}>Checkout</button>
+      <button type="button" className="btn btn-primary btn-sm" disabled={disabled} onClick={handleCheckoutClick}>Checkout</button>
     </div>
   );
 }

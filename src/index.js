@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
-import Home from './App';
+import Home from './Home';
 import Header from './header';
 import BookDetail from './book/bookDetail';
+import Checkout from './Checkout';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const Router = (props) => {
@@ -15,6 +16,7 @@ const Router = (props) => {
           <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/book/:id' component={BookDetail} />
+              <Route path='/checkout' component={Checkout} />
               <Redirect from='*' to='/' />
             </Switch>
         </div>

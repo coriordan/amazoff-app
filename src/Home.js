@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import cartAPI from './test/cartAPI';
 import Cart from './cart';
 import {Books} from './Data';
-import _ from 'lodash';
 import './App.css';
+import _ from 'lodash';
 
 const BookSortSelect = ({sort, onUpdateSort}) => {
   const handleSortChange = (e) => {
@@ -113,7 +113,7 @@ class Home extends Component {
             <h5>Shopping Cart</h5>
             <Cart cart={cart} 
                   removeHandler={this.removeFromCart} 
-                  updateQuantityHandler={this.updateQuantity} />
+                  updateQuantityHandler={this.updateQuantity} {...this.props} />
           </aside>
         </div>
     );
