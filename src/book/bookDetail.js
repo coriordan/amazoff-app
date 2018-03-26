@@ -141,7 +141,7 @@ class BookDetail extends React.Component {
         </main>
         <aside className="col-md-4">
           <h5>Shopping Cart</h5>
-          <Cart cart={cart} />
+          <Cart cart={cart} {...this.props} />
         </aside>
       </div>
     );

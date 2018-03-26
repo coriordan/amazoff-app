@@ -6,6 +6,10 @@ class Cart extends Component {
     super(props);
   }
   
+  handleCheckout = () => {
+    this.props.history.push('/checkout');
+  }
+  
   render() {
     let cartItems = this.props.cart.map(
       (i) => <CartItem key={i.id} item={i} 
@@ -25,7 +29,7 @@ class Cart extends Component {
           </ul>
           <hr/>
           <CartTotal items={this.props.cart} 
-                           {...this.props} />
+                           checkoutHandler = {this.handleCheckout} />
         </div>
       </div>
     );
@@ -52,8 +56,7 @@ const CartTotal = ({items, checkoutHandler}) => {
   );
 }
 
-const CartItem = ({item, removeHandler, 
-                          updateQuantityHandler}) => {
+const CartItem = ({item, removeHandler, updateQuantityHandler}) => {
   const handleRemove = (e) => {
     e.preventDefault();
     removeHandler(item.id);
