@@ -49,6 +49,24 @@ A diagram showing the app's hierarchical component design (see example below).
 
 ![][image3]
 
+Main app. screen
+
+![][image4]
+
+Shopping cart displaying some added items
+
+![][image5]
+
+Viewing a book, with the Kindle edition selected for purchase (not added to cart)
+
+![][image6]
+
+Order checkout page with order summary and selected shipping option displayed
+
+![][image7]
+
+Order confirmation page
+
 ## Routing.
 . . . . List each route supported and state the associated view . . . . . 
 
@@ -70,3 +88,7 @@ A diagram showing the app's hierarchical component design (see example below).
 [image1]: ./model.png
 [image2]: ./design.jpg
 [image3]: ./screen.png
+[image4]: ./screen2.png
+[image5]: ./screen3.png
+[image6]: ./screen4.png
+[image7]: ./screen5.png
