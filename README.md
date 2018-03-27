@@ -1,18 +1,23 @@
 # Assignment 1 - ReactJS app.
 
-Name: ... your name ...
+Name: Cathal O'Riordan
 
 ## Overview.
-...... A statement of the app concept and objectives (about a half-page) ........
 
+My application is called Amazoff. Based on the popular online shopping website Amazon.com, the app. models the 
+shopping cart experience whereby a user can browse a selection of book titles, add books to the shopping cart and 
+finally purchase the contents of the cart in the 'checkout' page.
 
- . . . . . List of user features (excluding user registration and authentication) . . . . 
- 
- + Feature 1
- + Feature 2
- + Feature 3
- + etc
- + etc
++ Browse book titles
++ Add to shopping cart
++ Remove from shopping cart
++ View cart sub-total
++ Increase or decrease quantity of item in shopping cart
++ View a book
++ Sort book catalogue by title, price or author
++ Select version of book to purchase (Kindle, Hardback, Paperback)
++ Select shipping option
++ Complete purchase
 
 ## Installation requirements.
 . . . .  List of software used to develop the app . . . . . . . 
