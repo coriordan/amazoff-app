@@ -20,8 +20,8 @@ class Cart extends Component {
     );
     
     return (
-      <div id="shoping-cart" className="card">
-        <div className="card-body">
+      <div id="shoping-cart" className="card mb-3">
+        <div className="card-body p-2">
           {
             this.props.cart.length === 0 && (
               <p>Your cart is empty</p>
