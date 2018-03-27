@@ -35,7 +35,7 @@ const Product = ({product, index, updateSelectedProductHandler}) => {
   }
 
   return (
-    <li className="book__format card w-25 mr-3" onClick={handleClick}>
+    <li className="book__format card  mr-2" onClick={handleClick}>
       <div className="card-body">
         <h6 className="card-title">{product.format}</h6>
         <p className="card-text">{product.price.currency + ' ' + 
@@ -136,10 +136,10 @@ class BookDetail extends React.Component {
 
     return (
       <div className="row">
-        <main className="col-md-8" role="main">
+        <main className="col-md-7" role="main">
           {display}
         </main>
-        <aside className="col-md-4">
+        <aside className="col-md-5">
           <h5>Shopping Cart</h5>
           <Cart cart={cart} {...this.props} />
         </aside>

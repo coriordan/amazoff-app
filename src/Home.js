@@ -101,7 +101,7 @@ class Home extends Component {
 
     return (
         <div className="row">
-          <main className="col-md-8" role="main">
+          <main className="col-md-7" role="main">
             <header className="d-flex justify-content-between flex-wrap align-items-center pb-2 mb-3 border-bottom">
               <h3>Best Sellers</h3>
               <BookSortSelect sort={this.state.sort} onUpdateSort={this.handleUpdateSort} />
@@ -109,7 +109,7 @@ class Home extends Component {
             <BookList books={Books} 
                       addHandler={this.addToCart} sort={this.state.sort} />
           </main>
-          <aside className="col-md-4">
+          <aside className="col-md-5">
             <h5>Shopping Cart</h5>
             <Cart cart={cart} 
                   removeHandler={this.removeFromCart} 

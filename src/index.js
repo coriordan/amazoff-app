@@ -5,6 +5,7 @@ import Home from './Home';
 import Header from './header';
 import BookDetail from './book/bookDetail';
 import Checkout from './Checkout';
+import Complete from './Complete';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const Router = (props) => {
@@ -12,11 +13,12 @@ const Router = (props) => {
     <BrowserRouter>
       <div className="view-container">
         <Header />
-        <div className="container-fluid pt-4">
+        <div className="container pt-4">
           <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/book/:id' component={BookDetail} />
               <Route path='/checkout' component={Checkout} />
+              <Route path='/complete' component={Complete} />
               <Redirect from='*' to='/' />
             </Switch>
         </div>
