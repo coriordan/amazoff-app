@@ -37,29 +37,33 @@ Diagram of app's data model (see example below) AND/OR a sample of the test data
 
 ## App Component Design.
 
-A diagram showing the app's hierarchical component design (see example below). 
-
 ![][image2]
 
-## UI Design.
+Home & BookDetail component hierarchies
 
 ![][image3]
 
-Main app. screen
+Checkout & Complete component hierarchies
+
+## UI Design.
 
 ![][image4]
 
-Shopping cart displaying some added items
+Main app. screen
 
 ![][image5]
 
-Viewing a book, with the Kindle edition selected for purchase (not added to cart)
+Shopping cart displaying some added items
 
 ![][image6]
 
-Order checkout page with order summary and selected shipping option displayed
+Viewing a book, with the Kindle edition selected for purchase (not added to cart)
 
 ![][image7]
+
+Order checkout page with order summary and selected shipping option displayed
+
+![][image8]
 
 Order confirmation page
 
@@ -83,8 +87,9 @@ Order confirmation page
 
 [image1]: ./model.png
 [image2]: ./design1.png
-[image3]: ./screen.png
-[image4]: ./screen2.png
-[image5]: ./screen3.png
-[image6]: ./screen4.png
-[image7]: ./screen5.png
+[image3]: ./design2.png
+[image4]: ./screen.png
+[image5]: ./screen2.png
+[image6]: ./screen3.png
+[image7]: ./screen4.png
+[image8]: ./screen5.png
