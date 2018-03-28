@@ -12,7 +12,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/1.jpg',
         'title': '100 Things Every Designer Needs to Know About People',
-        'author': 'Susan Weinschenk'
+        'authors': ['Susan Weinschenk']
     }, 
     {
         'bookId': 2, 
@@ -27,7 +27,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/2.jpg',
         'title': 'Envisioning Information',
-        'author': 'Edward R. Tufte'
+        'authors': ['Edward R. Tufte']
     },
     {
         'bookId': 3,
@@ -42,7 +42,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/3.jpg',
         'title': 'About Face: The Essentials of Interaction Design',
-        'author': 'Alan Cooper'
+        'authors': ['Alan Cooper']
     }, 
     {
         'bookId': 4,
@@ -57,7 +57,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/4.jpg',
         'title': 'HTML and CSS: Design and Build Websites',
-        'author': 'Jon Duckett'
+        'authors': ['Jon Duckett']
     }, 
     {
         'bookId': 5, 
@@ -72,7 +72,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/5.jpg',
         'title': 'Rework: Change the Way You Work Forever',
-        'author': 'Jason Fried'
+        'authors': ['Jason Fried']
     }, 
     {
         'bookId': 6,
@@ -87,7 +87,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/6.jpg',
         'title': 'Remote: Office Not Required',
-        'author': 'Jason Fried'
+        'authors': ['Jason Fried']
     }, 
     {
         'bookId': 7,
@@ -102,7 +102,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/7.jpg',
         'title': 'Beautiful Evidence',
-        'author': 'Edward R. Tufte'
+        'authors': ['Edward R. Tufte']
     }, 
     {
         'bookId': 8,
@@ -117,7 +117,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/8.jpg',
         'title': 'Hooked: How to Build Habit-Forming Products',
-        'author': 'Nir Eyal'
+        'authors': ['Nir Eyal']
     }, 
     {
         'bookId': 9,
@@ -132,7 +132,7 @@ let AllBooks = [
         }, 
         'imageUrl': '/books/images/9.jpg',
         'title': 'A Practical Guide to Designing for the Web',
-        'author': 'Mark Boulton'
+        'authors': ['Mark Boulton']
     }, 
     {
         'bookId': 10,
@@ -147,7 +147,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/10.jpg',
         'title': 'Thinking with Type',
-        'author': 'Ellen Lupton'
+        'authors': ['Ellen Lupton']
     }, 
     {
         'bookId': 11,
@@ -162,7 +162,7 @@ let AllBooks = [
         }, 
         'imageUrl': '/books/images/11.jpg',
         'title': 'Mastering Regular Expressions',
-        'author': 'Jeffrey E.F. Friedl'
+        'authors': ['Jeffrey E.F. Friedl']
     }, 
     {
         'bookId': 12,
@@ -177,7 +177,7 @@ let AllBooks = [
         },
         'imageUrl': '/books/images/12.jpg',
         'title': 'Design Patterns in Ruby',
-        'author': 'Russ Olsen'
+        'authors': ['Russ Olsen']
     }
 ]; 
 

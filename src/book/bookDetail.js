@@ -102,7 +102,6 @@ class BookDetail extends React.Component {
     let product = item.products[this.state.selectedProductIndex];
     const {title, authors, imageUrl} = item;
     let cartItem = Object.assign({}, product, {title, authors, imageUrl});    
-    console.log("Added cart item: " + JSON.stringify(cartItem));
     cartAPI.add(cartItem);
     this.setState({});
   }

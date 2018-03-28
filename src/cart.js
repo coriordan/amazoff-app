@@ -99,7 +99,7 @@ const CartItem = ({item, removeHandler, updateQuantityHandler}) => {
       <div className="media-body d-flex flex-row justify-content-between align-items-start">
         <div className="w-50">
           <h6 className="cart-item__title mt-0 mb-1">{item.title} ({item.format})</h6>
-          <div className="cart-item__meta text-muted">by {item.author}</div>
+          <div className="cart-item__meta text-muted">by {item.authors[0]}</div>
         </div>
         <div className="cart-item__meta text-muted">{item.price.currency + ' ' + 
                                                        Number(item.price.amount).toFixed(2)}</div>

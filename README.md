@@ -80,7 +80,14 @@ Order confirmation page
 
 ## Independent learning.
 
-. . . . . State the non-standard aspects of Angular (or other related technologies) that you researched and applied in this assignment . . . . .  
+Use of Object.assign to repurpose a given object into a different format or filter what attributes of the object are used
+
+e.g. 
+
+```javascript
+const {title, authors, imageUrl} = item;
+let cartItem = Object.assign({}, product, {title, authors, imageUrl});
+```
 
 [image1]: ./model.png
 [image2]: ./design1.png

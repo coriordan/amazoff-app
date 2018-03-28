@@ -43,7 +43,7 @@ const BookItem = ({book, addHandler}) => {
           <Link to={'/book/' + book.bookId}>
             <h6 className="book__title mt-0 mb-1">{book.title}</h6>
           </Link>
-          <div className="text-muted h6">{book.author}</div>
+          <div className="text-muted h6">{book.authors[0]}</div>
           <div className="text-muted h6">{book.defaultProduct.price.currency + ' ' + 
                                           Number(book.defaultProduct.price.amount).toFixed(2)}</div>
           <button type="button" className="btn btn-outline-primary btn-sm"
@@ -76,8 +76,8 @@ class Home extends Component {
   }
   
   addToCart = (item, product) => {
-    const {title, author, imageUrl} = item;
-    let cartItem = Object.assign({}, product, {title, author, imageUrl});    
+    const {title, authors, imageUrl} = item;
+    let cartItem = Object.assign({}, product, {title, authors, imageUrl});    
     cartAPI.add(cartItem);
     this.setState({});
   }
