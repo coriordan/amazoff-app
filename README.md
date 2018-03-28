@@ -70,10 +70,10 @@ Order confirmation page
 ## Routing.
 . . . . List each route supported and state the associated view . . . . . 
 
-+ /foos - displays all published foos
-+ /foos/:id - detail view of a particular foo (:id)
-+ etc
-+ etc
++ / - displays site index; best seller listing
++ /book/:id - displays an individual book; bookdetail page
++ /checkout - displays the shopping cart checkout page; finalise order and include shipping options
++ /complete - displays order confirmation and link back to site index
 
 ## Extra features
 
