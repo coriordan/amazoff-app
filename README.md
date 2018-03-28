@@ -35,8 +35,6 @@ Diagram of app's data model (see example below) AND/OR a sample of the test data
 
 ![][image1]
 
-Use meaningful sample data. Briefly explain any non-trivial issues.
-
 ## App Component Design.
 
 A diagram showing the app's hierarchical component design (see example below). 
@@ -44,8 +42,6 @@ A diagram showing the app's hierarchical component design (see example below).
 ![][image2]
 
 ## UI Design.
-
-. . . . . Screenshots of app's views (see example below) with appropriate captions (user regeneration and login views, if implemented, can be omitted) . . . . . . . 
 
 ![][image3]
 
@@ -86,7 +82,7 @@ Order confirmation page
 
 
 [image1]: ./model.png
-[image2]: ./design.jpg
+[image2]: ./design1.png
 [image3]: ./screen.png
 [image4]: ./screen2.png
 [image5]: ./screen3.png
