@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cartAPI from './test/cartAPI';
 import './App.css';
 
 class Cart extends Component {
@@ -10,12 +11,24 @@ class Cart extends Component {
     this.props.history.push('/checkout');
   }
   
+  removeFromCart = (id) => {
+    cartAPI.remove(id);
+    this.setState({});
+  }
+
+  updateQuantity = (id, quantity) => {
+    cartAPI.updateQuantity(id, quantity);
+    this.setState({});
+  }
+  
   render() {
     let CartItemComponent = CartItem;
     this.props.isCheckout && (CartItemComponent = CheckoutCartItem);
     
     let cartItems = this.props.cart.map(
       (i) => <CartItemComponent key={i.id} item={i} 
+                       removeHandler={this.removeFromCart} 
+                       updateQuantityHandler={this.updateQuantity} 
                        {...this.props} />
     );
     

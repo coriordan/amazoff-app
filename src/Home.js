@@ -81,16 +81,6 @@ class Home extends Component {
     cartAPI.add(cartItem);
     this.setState({});
   }
-
-  removeFromCart = (id) => {
-    cartAPI.remove(id);
-    this.setState({});
-  }
-
-  updateQuantity = (id, quantity) => {
-    cartAPI.updateQuantity(id, quantity);
-    this.setState({});
-  }
   
   handleUpdateSort = (value) => {
     this.setState({sort : value} );
@@ -112,9 +102,7 @@ class Home extends Component {
           <aside className="col-md-5">
             <h5>Shopping Cart</h5>
             <Cart cart={cart} 
-                  removeHandler={this.removeFromCart} 
-                  updateQuantityHandler={this.updateQuantity}
-                  {...this.props}/>
+                  {...this.props} />
           </aside>
         </div>
     );

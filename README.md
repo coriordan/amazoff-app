@@ -68,7 +68,6 @@ Order checkout page with order summary and selected shipping option displayed
 Order confirmation page
 
 ## Routing.
-. . . . List each route supported and state the associated view . . . . . 
 
 + / - displays site index; best seller listing
 + /book/:id - displays an individual book; bookdetail page
@@ -82,8 +81,6 @@ Order confirmation page
 ## Independent learning.
 
 . . . . . State the non-standard aspects of Angular (or other related technologies) that you researched and applied in this assignment . . . . .  
-
-
 
 [image1]: ./model.png
 [image2]: ./design1.png

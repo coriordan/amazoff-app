@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import request from 'superagent' ;
 import localCache from './localCache';
 import Cart from '../cart';
@@ -148,4 +147,4 @@ class BookDetail extends React.Component {
   }
 };
 
-export default withRouter(BookDetail);
+export default BookDetail;
