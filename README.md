@@ -4,7 +4,7 @@ Name: Cathal O'Riordan
 
 ## Overview.
 
-My application is called Amazoff. Based on the popular online shopping website Amazon.com, the app. models the 
+My application is called Amazoff. Based on the popular online shopping website Amazon.com, the app. recreates the 
 shopping cart experience whereby a user can browse a selection of book titles, add books to the shopping cart and 
 finally purchase the contents of the cart in the 'checkout' page.
 
@@ -17,17 +17,17 @@ finally purchase the contents of the cart in the 'checkout' page.
 + Sort book catalogue by title, price or author
 + Select version of book to purchase (Kindle, Hardback, Paperback)
 + Select shipping option
-+ Complete purchase
++ Complete purchase confirmation
 
 ## Installation requirements.
-. . . .  List of software used to develop the app . . . . . . . 
-+ ReactJS v15.3.0
-+ Bootstrap 3
++ ReactJS v16.2.0
++ Bootstrap 4
 + create-react-app tool
-+ etc
-+ etc 
++ superagent v3.8
++ React Router v4.2
++ React Scripts v1.1 
 
-. . . . . . Also, explain (to a third party) what steps one must take to run your app after cloning it from the repository, e.g. any non-standard software installation; any environment setup; how to start app; where to view app in browser . . . . . . . At its simplest this may just be: npm install + npm start
+To install run npm install followed by npm start
 
 ## Data Model Design.
 
