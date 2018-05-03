@@ -16,7 +16,6 @@ class Cart extends Component {
     let cart = localCache.getCart();
     await cartAPI.removeItem(cart._id, item._id);
     cart = await cartAPI.getCart(cart._id); // reload cart
-    console.log(cart);
     localCache.setCart(cart);
     this.setState({});
   }
@@ -26,11 +25,27 @@ class Cart extends Component {
 //    this.setState({});
   }
   
+  async componentDidMount() {
+    let cart = null;
+    const cartId = localStorage.getItem('cart'); // do we have an existing cart
+    
+    if (cartId) {
+      cart = await cartAPI.getCart(cartId);
+    } else {
+      cart = await cartAPI.newCart(); // retrieve new cart
+      localStorage.setItem('cart', cart._id);
+    }
+    localCache.setCart(cart);  
+    this.setState({});
+  }
+  
   render() {
+    let cart = localCache.getCart();
+    
     let CartItemComponent = CartItem;
     this.props.isCheckout && (CartItemComponent = CheckoutCartItem);
 
-    let cartItems = this.props.cart.items.map(
+    let cartItems = cart.items.map(
       (i) => <CartItemComponent key={i._id} item={i} 
                        removeHandler={this.removeFromCart} 
                        updateQuantityHandler={this.updateQuantity} 
@@ -41,7 +56,7 @@ class Cart extends Component {
       <div id="shoping-cart" className="card mb-3">
         <div className="card-body p-2">
           {
-            this.props.cart.items.length === 0 && (
+            cart.items.length === 0 && (
               <p>Your cart is empty</p>
             )
           }
@@ -52,7 +67,7 @@ class Cart extends Component {
             this.props.isCheckout === false && (
             [
               <hr/>,
-              <CartTotal items={this.props.cart.items} 
+              <CartTotal items={cart.items} 
                          checkoutHandler={this.handleCheckout} />
             ]
           )

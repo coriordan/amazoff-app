@@ -107,16 +107,7 @@ class Home extends Component {
 
   render() {
     let products = localCache.getProducts();
-    let cart = localCache.getCart();
-    let display = "";
-    if (cart) {
-      display = (
-        [
-          <Cart cart={cart} 
-                {...this.props} />
-        ]
-      );
-    }
+    
 
     return (
         <div className="row">
@@ -130,7 +121,7 @@ class Home extends Component {
           </main>
           <aside className="col-md-5">
             <h5>Shopping Cart</h5>
-            {display}
+            <Cart {...this.props} />
           </aside>
         </div>
     );

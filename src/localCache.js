@@ -6,7 +6,7 @@ class LocalCache {
     }
 
     getCart() {
-      return this.cart;
+      return this.cart || {items: []};
     }
 
     setCart(cart) {
