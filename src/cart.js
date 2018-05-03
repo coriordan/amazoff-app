@@ -20,11 +20,14 @@ class Cart extends Component {
     this.setState({});
   }
 
-  updateQuantity = (id, quantity) => {
-//    cartAPI.updateQuantity(id, quantity);
-//    this.setState({});
+  updateQuantity = async (item, quantity) => {
+    let cart = localCache.getCart();
+    await cartAPI.updateQuantity(cart._id, item._id, quantity);
+    cart = await cartAPI.getCart(cart._id);
+    localCache.setCart(cart);
+    this.setState({});
   }
-  
+
   async componentDidMount() {
     let cart = null;
     const cartId = localStorage.getItem('cart'); // do we have an existing cart
