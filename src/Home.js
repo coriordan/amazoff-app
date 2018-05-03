@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import cartAPI from './test/cartAPI';
 import Cart from './cart';
-import {Books} from './Data';
+import * as productAPI from './api/product';
+import * as cartAPI from './api/cart';
+import localCache from './localCache';
 import './App.css';
 import _ from 'lodash';
 
@@ -21,7 +22,7 @@ const BookSortSelect = ({sort, onUpdateSort}) => {
             onChange={handleSortChange}>
           <option value="title">Title</option> 
           <option value="price.amount">Price</option>
-          <option value="author">Author</option>
+          <option value="authors">Author</option>
         </select>
       </div>
     </form>
@@ -31,7 +32,7 @@ const BookSortSelect = ({sort, onUpdateSort}) => {
 const BookItem = ({book, addHandler}) => {
   const handleAdd = (e) => {
     e.preventDefault();
-    addHandler(book, book.defaultProduct);
+    addHandler(book);
   };
 
   return (
@@ -44,8 +45,8 @@ const BookItem = ({book, addHandler}) => {
             <h6 className="book__title mt-0 mb-1">{book.title}</h6>
           </Link>
           <div className="text-muted h6">{book.authors[0]}</div>
-          <div className="text-muted h6">{book.defaultProduct.price.currency + ' ' + 
-                                          Number(book.defaultProduct.price.amount).toFixed(2)}</div>
+          <div className="text-muted h6">{book.price.currency + ' ' + 
+                                          Number(book.price.amount).toFixed(2)}</div>
           <button type="button" className="btn btn-outline-primary btn-sm"
                                 onClick={handleAdd}>Add to Cart</button>
         </div>
@@ -57,7 +58,7 @@ const BookList = ({books, sort, ...props}) => {
   let sortedList = _.sortBy(books, sort);
     
   let displayedBooks = sortedList.map(
-    (b) => <BookItem key={b.bookId} book={b} {...props} />
+    (b) => <BookItem key={b._id} book={b} {...props} />
   );
 
   return (
@@ -74,20 +75,48 @@ class Home extends Component {
       sort : 'title'
     };
   }
-  
-  addToCart = (item, product) => {
-    const {title, authors, imageUrl} = item;
-    let cartItem = Object.assign({}, product, {title, authors, imageUrl});    
-    cartAPI.add(cartItem);
+
+  addToCart = async (item) => {
+    let cart = localCache.getCart();
+    await cartAPI.addItem(cart._id, item._id);
+    cart = await cartAPI.getCart(cart._id); // reload cart
+    localCache.setCart(cart);
     this.setState({});
   }
-  
+
   handleUpdateSort = (value) => {
     this.setState({sort : value} );
   }
-   
+
+  async componentDidMount() {
+    const products = await productAPI.getAll();
+    localCache.setProducts(products);
+    
+    let cart = null;
+    const cartId = localStorage.getItem('cart'); // do we have an existing cart
+    
+    if (cartId) {
+      cart = await cartAPI.getCart(cartId);
+    } else {
+      cart = await cartAPI.newCart(); // retrieve new cart
+      localStorage.setItem('cart', cart._id);
+    }
+    localCache.setCart(cart);  
+    this.setState({});
+  }
+
   render() {
-    let cart = cartAPI.getCartContents();
+    let products = localCache.getProducts();
+    let cart = localCache.getCart();
+    let display = "";
+    if (cart) {
+      display = (
+        [
+          <Cart cart={cart} 
+                {...this.props} />
+        ]
+      );
+    }
 
     return (
         <div className="row">
@@ -96,13 +125,12 @@ class Home extends Component {
               <h3>Best Sellers</h3>
               <BookSortSelect sort={this.state.sort} onUpdateSort={this.handleUpdateSort} />
             </header>
-            <BookList books={Books} 
+            <BookList books={products} 
                       addHandler={this.addToCart} sort={this.state.sort} />
           </main>
           <aside className="col-md-5">
             <h5>Shopping Cart</h5>
-            <Cart cart={cart} 
-                  {...this.props} />
+            {display}
           </aside>
         </div>
     );

@@ -1,32 +1,37 @@
 import React, { Component } from 'react';
-import cartAPI from './test/cartAPI';
+import * as cartAPI from './api/cart';
+import localCache from './localCache';
 import './App.css';
 
 class Cart extends Component {
   constructor(props) {
-    super(props);
+    super(props);  
   }
      
   handleCheckout = () => {
-    this.props.history.push('/checkout');
+//    this.props.history.push('/checkout');
   }
   
-  removeFromCart = (id) => {
-    cartAPI.remove(id);
+  removeFromCart = async (item) => {
+    let cart = localCache.getCart();
+    await cartAPI.removeItem(cart._id, item._id);
+    cart = await cartAPI.getCart(cart._id); // reload cart
+    console.log(cart);
+    localCache.setCart(cart);
     this.setState({});
   }
 
   updateQuantity = (id, quantity) => {
-    cartAPI.updateQuantity(id, quantity);
-    this.setState({});
+//    cartAPI.updateQuantity(id, quantity);
+//    this.setState({});
   }
   
   render() {
     let CartItemComponent = CartItem;
     this.props.isCheckout && (CartItemComponent = CheckoutCartItem);
-    
-    let cartItems = this.props.cart.map(
-      (i) => <CartItemComponent key={i.id} item={i} 
+
+    let cartItems = this.props.cart.items.map(
+      (i) => <CartItemComponent key={i._id} item={i} 
                        removeHandler={this.removeFromCart} 
                        updateQuantityHandler={this.updateQuantity} 
                        {...this.props} />
@@ -36,7 +41,7 @@ class Cart extends Component {
       <div id="shoping-cart" className="card mb-3">
         <div className="card-body p-2">
           {
-            this.props.cart.length === 0 && (
+            this.props.cart.items.length === 0 && (
               <p>Your cart is empty</p>
             )
           }
@@ -47,7 +52,7 @@ class Cart extends Component {
             this.props.isCheckout === false && (
             [
               <hr/>,
-              <CartTotal items={this.props.cart} 
+              <CartTotal items={this.props.cart.items} 
                          checkoutHandler={this.handleCheckout} />
             ]
           )
@@ -65,7 +70,7 @@ Cart.defaultProps = {
 const CartTotal = ({items, checkoutHandler}) => {
   let disabled = (items.length === 0);
   let total = items.reduce(
-              (sum, i) => (sum += i.quantity * i.price.amount), 0);
+              (sum, i) => (sum += i.quantity * i.product.price.amount), 0);
   
   const handleCheckoutClick = (e) => {
     e.preventDefault();
@@ -85,12 +90,12 @@ const CartTotal = ({items, checkoutHandler}) => {
 const CartItem = ({item, removeHandler, updateQuantityHandler}) => {
   const handleRemove = (e) => {
     e.preventDefault();
-    removeHandler(item.id);
+    removeHandler(item);
   }
   
   const handleUpdateQuantity = (e) => {
     e.preventDefault();
-    updateQuantityHandler(item.id, e.target.value);
+    updateQuantityHandler(item, e.target.value);
   }
 
   return (
@@ -98,11 +103,11 @@ const CartItem = ({item, removeHandler, updateQuantityHandler}) => {
       <img className="cart-item__image mr-3" src={item.imageUrl} alt={item.title}/>
       <div className="media-body d-flex flex-row justify-content-between align-items-start">
         <div className="w-50">
-          <h6 className="cart-item__title mt-0 mb-1">{item.title} ({item.format})</h6>
-          <div className="cart-item__meta text-muted">by {item.authors[0]}</div>
+          <h6 className="cart-item__title mt-0 mb-1">{item.product.title} ({item.format})</h6>
+          <div className="cart-item__meta text-muted">by {item.product.authors[0]}</div>
         </div>
-        <div className="cart-item__meta text-muted">{item.price.currency + ' ' + 
-                                                       Number(item.price.amount).toFixed(2)}</div>
+        <div className="cart-item__meta text-muted">{item.product.price.currency + ' ' + 
+                                                       Number(item.product.price.amount).toFixed(2)}</div>
           <select id="cart-item__quantity" value={item.quantity} 
                   className="form-control form-control-sm" style={{width: '15%'}}
                   onChange={handleUpdateQuantity}>
@@ -126,7 +131,7 @@ const CheckoutCartItem = ({item}) => {
       <img className="cart-item__image--large mr-3" src={item.imageUrl} alt={item.title}/>
       <div className="media-body">
           <h6 className="cart-item__title mt-0 mb-1">{item.title} ({item.format})</h6>
-          <div className="cart-item__meta text-muted">by {item.author}</div>
+          <div className="cart-item__meta text-muted">by {item.authors[0]}</div>
           <div className="cart-item__meta text-muted">{item.price.currency + ' ' + 
                                                        Number(item.price.amount).toFixed(2)}</div>
           <div className="cart-item__meta text-muted">x {item.quantity}</div>
