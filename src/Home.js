@@ -91,24 +91,12 @@ class Home extends Component {
   async componentDidMount() {
     const products = await productAPI.getAll();
     localCache.setProducts(products);
-    
-    let cart = null;
-    const cartId = localStorage.getItem('cart'); // do we have an existing cart
-    
-    if (cartId) {
-      cart = await cartAPI.getCart(cartId);
-    } else {
-      cart = await cartAPI.newCart(); // retrieve new cart
-      localStorage.setItem('cart', cart._id);
-    }
-    localCache.setCart(cart);  
     this.setState({});
   }
 
   render() {
     let products = localCache.getProducts();
     
-
     return (
         <div className="row">
           <main className="col-md-7" role="main">
