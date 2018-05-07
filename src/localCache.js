@@ -1,25 +1,34 @@
 class LocalCache {
 
-    constructor() {
-      this.cart = null;
-      this.products = [];
-    }
+  constructor() {
+    this.cart = null;
+    this.products = [];
+    this.product = null;
+  }
 
-    getCart() {
-      return this.cart || {items: []};
-    }
+  getCart() {
+    return this.cart || {items: []};
+  }
 
-    setCart(cart) {
-      this.cart = cart;
-    }
+  setCart(cart) {
+    this.cart = cart;
+  }
 
-    setProducts(products) {
-      this.products = products;
-    }
+  setProducts(products) {
+    this.products = products;
+  }
 
-    getProducts() {
-      return this.products;
-    }
+  getProducts() {
+    return this.products;
+  }
+  
+  setProduct(product) {
+    this.product = product;
+  }
+  
+  getProduct() {
+    return this.product;
+  }
 }
 
 export default (new LocalCache());

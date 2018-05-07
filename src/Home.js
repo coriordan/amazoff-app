@@ -37,11 +37,11 @@ const BookItem = ({book, addHandler}) => {
 
   return (
       <li className="media book my-4">
-        <Link to={'/book/' + book.bookId}>
+        <Link to={'/book/' + book._id}>
           <img className="book__image mr-3" src={book.imageUrl} alt={book.title}/>   
         </Link>
         <div className="media-body">
-          <Link to={'/book/' + book.bookId}>
+          <Link to={'/book/' + book._id}>
             <h6 className="book__title mt-0 mb-1">{book.title}</h6>
           </Link>
           <div className="text-muted h6">{book.authors[0]}</div>

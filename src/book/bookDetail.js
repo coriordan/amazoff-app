@@ -1,60 +1,22 @@
 import React from 'react';
 import request from 'superagent' ;
-import localCache from './localCache';
+import localCache from '../localCache';
+import * as productAPI from '../api/product';
+import * as cartAPI from '../api/cart';
 import Cart from '../cart';
-import cartAPI from '../test/cartAPI';
 
-const BuyButton = ({selectedProductIndex, addHandler, book}) => {
+const BuyButton = ({addHandler, book}) => {
   const handleClick = (e) => {
     addHandler(book);
   }
-  
-  let disabled = (selectedProductIndex < 0);
 
   return (
     <div className="mb-4">    
       <button type="button" className="btn btn-outline-primary btn-lg btn-block" 
-              disabled={disabled} onClick={handleClick}>Add to Cart</button>
+             onClick={handleClick}>Add to Cart</button>
     </div>
   );
 } 
-
-const Product = ({product, index, updateSelectedProductHandler}) => {
-  const setSelectedProduct = (card) => {
-    card.classList.add('border', 'border-warning', 'font-weight-bold');
-    let siblings = [...card.parentElement.children].filter(c => c !== card);
-    siblings.forEach(s => s.classList.remove('border', 
-                                              'border-warning', 'font-weight-bold'));
-  }
-
-  const handleClick = (e) => {
-    let card = e.currentTarget;
-    setSelectedProduct(card);
-    updateSelectedProductHandler(index);
-  }
-
-  return (
-    <li className="book__format card  mr-2" onClick={handleClick}>
-      <div className="card-body">
-        <h6 className="card-title">{product.format}</h6>
-        <p className="card-text">{product.price.currency + ' ' + 
-                                    Number(product.price.amount).toFixed(2)}</p>
-      </div>
-    </li>
-  );
-}
-
-const ProductsList = ({products, ...props}) => {
-  let displayedProducts = products.map(
-    (p, i) => <Product key={p.productId} {...props} product={p} index={i}/>
-  );
-
-  return (
-    <ul className="list-unstyled d-flex flex-row flex-wrap ">
-      {displayedProducts}
-    </ul>  
-  );
-}
 
 const BookAuthor = ({author}) => {
   return ( 
@@ -76,9 +38,8 @@ const BookSpecification = ({book, ...props}) => {
         <ul className="list-unstyled book__authors">
           {bookAuthors}
         </ul>
-        <hr/>
-        <h6>Available formats</h6>
-        <ProductsList {...props}/>
+        <p className="text-muted h6 mb-4">{book.price.currency + ' ' + 
+                                          Number(book.price.amount).toFixed(2)}</p>
         <h3>Description</h3>
         <p className="book__description">{book.description}</p>
       </div>
@@ -89,45 +50,31 @@ const BookSpecification = ({book, ...props}) => {
 class BookDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedProductIndex : -1
-    };
   }
-  
-  setSelectedProduct = (index) => {
-    this.setState({selectedProductIndex: index});
-  }
-  
-  addToCart = (item) => {
-    let product = item.products[this.state.selectedProductIndex];
-    const {title, authors, imageUrl} = item;
-    let cartItem = Object.assign({}, product, {title, authors, imageUrl});    
-    cartAPI.add(cartItem);
+
+  addToCart = async (item) => {
+    let cart = localCache.getCart();
+    await cartAPI.addItem(cart._id, item._id);
+    cart = await cartAPI.getCart(cart._id); // reload cart
+    localCache.setCart(cart);
     this.setState({});
   }
   
-  componentDidMount() {
-    request.get(
-      '/books/specs/' + this.props.match.params.id + '.json',
-      (err, res) => {
-        let json = JSON.parse(res.text);
-        localCache.setBook(json);
-        this.setState({});  
-      });
+  async componentDidMount() {
+    let productId = this.props.match.params.id;
+    let product = await productAPI.getProduct(productId);
+    localCache.setProduct(product);
+    this.setState({});
   }
 
   render() {
-    let cart = cartAPI.getCartContents();
     let display = <p>Book details unavailable</p>;
-    let book = localCache.getBook();
+    let book = localCache.getProduct();
     if (book) {
       display = (
         [
-          <BookSpecification book={book} 
-                             products={book.products}
-                             updateSelectedProductHandler={this.setSelectedProduct} />,
-          <BuyButton book={book} addHandler={this.addToCart} 
-                                 selectedProductIndex={this.state.selectedProductIndex} />
+          <BookSpecification book={book} />,
+          <BuyButton book={book} addHandler={this.addToCart} />
         ]
       );
     }
@@ -139,7 +86,7 @@ class BookDetail extends React.Component {
         </main>
         <aside className="col-md-5">
           <h5>Shopping Cart</h5>
-          <Cart cart={cart} {...this.props} />
+          <Cart {...this.props} />
         </aside>
       </div>
     );

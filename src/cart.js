@@ -38,10 +38,10 @@ class Cart extends Component {
       cart = await cartAPI.newCart(); // retrieve new cart
       localStorage.setItem('cart', cart._id);
     }
-    localCache.setCart(cart);  
+    localCache.setCart(cart);
     this.setState({});
   }
-  
+
   render() {
     let cart = localCache.getCart();
     
@@ -54,7 +54,7 @@ class Cart extends Component {
                        updateQuantityHandler={this.updateQuantity} 
                        {...this.props} />
     );
-    
+
     return (
       <div id="shoping-cart" className="card mb-3">
         <div className="card-body p-2">
@@ -118,10 +118,10 @@ const CartItem = ({item, removeHandler, updateQuantityHandler}) => {
 
   return (
     <li className="media cart-item my-4">
-      <img className="cart-item__image mr-3" src={item.imageUrl} alt={item.title}/>
+      <img className="cart-item__image mr-3" src={item.product.imageUrl} alt={item.product.title}/>
       <div className="media-body d-flex flex-row justify-content-between align-items-start">
         <div className="w-50">
-          <h6 className="cart-item__title mt-0 mb-1">{item.product.title} ({item.format})</h6>
+          <h6 className="cart-item__title mt-0 mb-1">{item.product.title}f</h6>
           <div className="cart-item__meta text-muted">by {item.product.authors[0]}</div>
         </div>
         <div className="cart-item__meta text-muted">{item.product.price.currency + ' ' + 
