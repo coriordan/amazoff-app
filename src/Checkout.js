@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import cartAPI from './test/cartAPI';
 import Cart from './cart';
+import * as cartAPI from './api/cart';
+import * as orderAPI from './api/order';
+import localCache from './localCache';
 import './App.css';
 
 const shippingOptions = [
@@ -32,35 +34,31 @@ class Checkout extends Component {
     this.state = {
       shipping : 9.99
     };
-  
   }
 
-  completeOrderHandler = () => {
-    cartAPI.completeOrder();
+  completeOrderHandler = async () => {
+    let cart = localCache.getCart();
+    await orderAPI.newOrder(cart._id);
+    localStorage.removeItem('cart');
     this.props.history.push('/complete');
   }
-  
+
   shippingOptionSelectHandler = (option) => {
     this.setState({"shipping": option.price.amount});
   }
-  
+
   render() {
-    let cart = cartAPI.getCartContents();
-    
+
     return (
         <div className="row">
           <main className="col-md-8" role="main">
             <h4>Shopping Cart</h4>
-            <Cart cart={cart} 
-                removeHandler={this.removeFromCart} 
-                  updateQuantityHandler={this.updateQuantity} 
-                  isCheckout = {true}
-                  {...this.props}/>
+            <Cart isCheckout = {true} {...this.props}/>
             <h5>Shipping Options</h5>
-            <ShippingOptions shippingOptionSelectHandler={this.shippingOptionSelectHandler} options={shippingOptions} />     
+            <ShippingOptions shippingOptionSelectHandler={this.shippingOptionSelectHandler} options={shippingOptions} />
           </main>
           <aside className="col-md-4">
-            <OrderSummary items={cart} shippingCosts={this.state.shipping}/>
+            <OrderSummary shippingCosts={this.state.shipping}/>
             <CompleteOrderButton completeOrderHandler={this.completeOrderHandler}/>
           </aside>
         </div>
@@ -110,33 +108,52 @@ const ShippingOptions = ({options, shippingOptionSelectHandler}) => {
   );
 }
 
-const OrderSummary = ({items, shippingCosts}) => {
-  let total = items.reduce(
-              (sum, i) => (sum += i.quantity * i.price.amount), 0);
+class OrderSummary extends Component {
+  
+  async componentDidMount() {
+    let cart = null;
+    const cartId = localStorage.getItem('cart'); // do we have an existing cart
+    
+    if (cartId) {
+      cart = await cartAPI.getCart(cartId);
+    } else {
+      cart = await cartAPI.newCart(); // retrieve new cart
+      localStorage.setItem('cart', cart._id);
+    }
+    localCache.setCart(cart);
+    this.setState({});
+  }
 
-  return (
-    <div id="order-summary">
-      <h5>Order Summary</h5>
-      <div className="card bg-light mb-3">
-        <div className="card-body p-2">
-          <ul className="list-unstyled">
-            <li className="list-unstyled d-flex flex-row justify-content-between align-items-start">
-              <p className="w-75">Items</p>
-              <p>EUR&nbsp;{Number(total).toFixed(2)}</p>
-            </li>
-            <li className="list-unstyled d-flex flex-row justify-content-between align-items-start">
-              <p className="w-75">Shipping &amp; Handling</p>
-              <p>EUR&nbsp;{shippingCosts}</p>
-            </li>
-            <li className="list-unstyled d-flex flex-row justify-content-between align-items-start mt-2 pt-3 border-top">
-              <strong className="w-75">Order Total</strong>
-              <strong>EUR&nbsp;{Number(total+shippingCosts).toFixed(2)}</strong>
-            </li>
-          </ul>
+  render() {
+    let cart = localCache.getCart();
+    
+    let total = cart.items.reduce(
+      (sum, i) => (sum += i.quantity * i.product.price.amount), 0);
+      
+      return (
+        <div id="order-summary">
+          <h5>Order Summary</h5>
+          <div className="card bg-light mb-3">
+            <div className="card-body p-2">
+              <ul className="list-unstyled">
+                <li className="list-unstyled d-flex flex-row justify-content-between align-items-start">
+                  <p className="w-75">Items</p>
+                  <p>EUR&nbsp;{Number(total).toFixed(2)}</p>
+                </li>
+                <li className="list-unstyled d-flex flex-row justify-content-between align-items-start">
+                  <p className="w-75">Shipping &amp; Handling</p>
+                  <p>EUR&nbsp;{this.props.shippingCosts}</p>
+                </li>
+                <li className="list-unstyled d-flex flex-row justify-content-between align-items-start mt-2 pt-3 border-top">
+                  <strong className="w-75">Order Total</strong>
+                  <strong>EUR&nbsp;{Number(total + this.props.shippingCosts).toFixed(2)}</strong>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  );
+      );
+  }  
 }
 
 const CompleteOrderButton = ({completeOrderHandler}) => {

@@ -6,6 +6,7 @@ import Header from './header';
 import BookDetail from './book/bookDetail';
 import Checkout from './Checkout';
 import Complete from './Complete';
+import MyOrders from './MyOrders';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const Router = (props) => {
@@ -19,6 +20,7 @@ const Router = (props) => {
               <Route path='/book/:id' component={BookDetail} />
               <Route path='/checkout' component={Checkout} />
               <Route path='/complete' component={Complete} />
+              <Route path='/orders' component={MyOrders} />
               <Redirect from='*' to='/' />
             </Switch>
         </div>

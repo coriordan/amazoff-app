@@ -4,6 +4,7 @@ class LocalCache {
     this.cart = null;
     this.products = [];
     this.product = null;
+    this.orders = null;
   }
 
   getCart() {
@@ -28,6 +29,14 @@ class LocalCache {
   
   getProduct() {
     return this.product;
+  }
+  
+  setOrders(orders) {
+    this.orders = orders;
+  }
+  
+  getOrders() {
+    return this.orders || [];
   }
 }
 

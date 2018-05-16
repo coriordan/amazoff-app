@@ -9,7 +9,7 @@ class Cart extends Component {
   }
      
   handleCheckout = () => {
-//    this.props.history.push('/checkout');
+    this.props.history.push('/checkout');
   }
   
   removeFromCart = async (item) => {
@@ -146,12 +146,12 @@ const CartItem = ({item, removeHandler, updateQuantityHandler}) => {
 const CheckoutCartItem = ({item}) => {
   return (
     <li className="media cart-item my-4">
-      <img className="cart-item__image--large mr-3" src={item.imageUrl} alt={item.title}/>
+      <img className="cart-item__image--large mr-3" src={item.product.imageUrl} alt={item.product.title}/>
       <div className="media-body">
-          <h6 className="cart-item__title mt-0 mb-1">{item.title} ({item.format})</h6>
-          <div className="cart-item__meta text-muted">by {item.authors[0]}</div>
-          <div className="cart-item__meta text-muted">{item.price.currency + ' ' + 
-                                                       Number(item.price.amount).toFixed(2)}</div>
+          <h6 className="cart-item__title mt-0 mb-1">{item.product.title}</h6>
+          <div className="cart-item__meta text-muted">by {item.product.authors[0]}</div>
+          <div className="cart-item__meta text-muted">{item.product.price.currency + ' ' + 
+                                                       Number(item.product.price.amount).toFixed(2)}</div>
           <div className="cart-item__meta text-muted">x {item.quantity}</div>
       </div>
     </li>
